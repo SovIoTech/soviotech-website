@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soviotech — We Automate What Matters</title>
+  <meta name="description" content="Soviotech builds end-to-end IoT and industrial automation systems. From embedded firmware to cloud dashboards — we turn legacy operations into intelligent, connected infrastructure.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        <span class="nav__logo-mark">&gt;_</span> soviotech
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+      <div class="nav__links" id="navLinks">
+        <a href="#solutions">Solutions</a>
+        <a href="#projects">Projects</a>
+        <a href="#stack">Stack</a>
+        <a href="#team">Team</a>
+        <a href="#contact" class="nav__cta">Start a Project</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero__grid-bg" aria-hidden="true"></div>
+    <div class="hero__content">
+      <div class="hero__tag">IoT &middot; Industrial Automation &middot; Edge AI</div>
+      <h1 class="hero__title">
+        We automate<br>
+        <span class="hero__title-accent" id="rotatingText">what matters.</span>
+      </h1>
+      <p class="hero__sub">
+        From sensor to cloud. From legacy hardware to real-time intelligence.<br>
+        We design, build, and deploy complete automation systems<br class="hide-mobile"> that work in the field — not just in demos.
+      </p>
+      <div class="hero__actions">
+        <a href="#projects" class="btn btn--primary">See Our Work</a>
+        <a href="#contact" class="btn btn--ghost">Get in Touch</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <span class="hero__stat-num" data-count="25">0</span><span class="hero__stat-plus">+</span>
+          <span class="hero__stat-label">Systems Deployed</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num" data-count="6">0</span>
+          <span class="hero__stat-label">Industries Served</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-num" data-count="100">0</span><span class="hero__stat-plus">%</span>
+          <span class="hero__stat-label">Hardware to Cloud</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero__scroll-hint" aria-hidden="true">
+      <span>scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </header>
+
+  <!-- SOLUTIONS -->
+  <section class="solutions" id="solutions">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// what we do</span>
+        <h2 class="section-title">Full-stack automation.<br>Not just a piece of the puzzle.</h2>
+        <p class="section-sub">Most companies do firmware OR cloud OR dashboards. We do the entire vertical — and we own every layer.</p>
+      </div>
+
+      <div class="solutions__grid">
+        <div class="solution-card">
+          <div class="solution-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8h2M7 11h4"/></svg>
+          </div>
+          <h3>Embedded Systems</h3>
+          <p>Custom firmware on ESP32, nRF52, STM32. Sensor integration, motor control, wireless protocols. Production-grade, not prototype-grade.</p>
+          <div class="solution-card__tags">
+            <span>ESP-IDF</span><span>Arduino</span><span>BLE</span><span>LTE</span><span>Modbus</span>
+          </div>
+        </div>
+
+        <div class="solution-card">
+          <div class="solution-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9M8 17l4 4 4-4"/></svg>
+          </div>
+          <h3>Cloud & IoT Infrastructure</h3>
+          <p>AWS IoT Core, Lambda, DynamoDB, AppSync. Multi-tenant architectures with real-time data pipelines. Infrastructure as code, not click-ops.</p>
+          <div class="solution-card__tags">
+            <span>AWS IoT</span><span>MQTT</span><span>CDK</span><span>GraphQL</span><span>DynamoDB</span>
+          </div>
+        </div>
+
+        <div class="solution-card">
+          <div class="solution-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 5 4-9"/></svg>
+          </div>
+          <h3>Dashboards & Interfaces</h3>
+          <p>Real-time monitoring UIs that operators actually use. Live data, historical trending, fleet views. React, Next.js, deployed fast.</p>
+          <div class="solution-card__tags">
+            <span>React</span><span>Next.js</span><span>TypeScript</span><span>WebSocket</span>
+          </div>
+        </div>
+
+        <div class="solution-card">
+          <div class="solution-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+          <h3>Edge AI & Vision</h3>
+          <p>TensorFlow Lite models running on microcontrollers. Sub-200ms inference. On-device intelligence where cloud latency isn't an option.</p>
+          <div class="solution-card__tags">
+            <span>TFLite</span><span>ESP32-S3</span><span>Computer Vision</span><span>INT8</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// how we work</span>
+        <h2 class="section-title">Sensor to dashboard.<br>One team. One pipeline.</h2>
+      </div>
+      <div class="process__steps">
+        <div class="process__step">
+          <div class="process__step-num">01</div>
+          <h3>Discover</h3>
+          <p>Understand the physical system, the constraints, the data that matters. We visit the site, read the datasheets, map the signals.</p>
+        </div>
+        <div class="process__connector" aria-hidden="true"></div>
+        <div class="process__step">
+          <div class="process__step-num">02</div>
+          <h3>Design</h3>
+          <p>Hardware selection, communication architecture, cloud topology. We spec everything before writing a single line of code.</p>
+        </div>
+        <div class="process__connector" aria-hidden="true"></div>
+        <div class="process__step">
+          <div class="process__step-num">03</div>
+          <h3>Build</h3>
+          <p>Firmware, cloud backend, and frontend developed in parallel. Phased delivery so you see progress early and often.</p>
+        </div>
+        <div class="process__connector" aria-hidden="true"></div>
+        <div class="process__step">
+          <div class="process__step-num">04</div>
+          <h3>Deploy</h3>
+          <p>Field installation, validation, monitoring. We don't hand off a ZIP file — we deploy, verify, and support the system in production.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// selected work</span>
+        <h2 class="section-title">Real systems solving<br>real problems.</h2>
+        <p class="section-sub">These aren't demos. These are deployed systems handling live data in production environments.</p>
+      </div>
+
+      <!-- PROJECT 1: EnerCo -->
+      <article class="project">
+        <div class="project__header">
+          <div class="project__number">01</div>
+          <div class="project__meta">
+            <span class="project__industry">Energy &middot; HVAC</span>
+            <span class="project__type">SaaS Platform + Hardware Integration</span>
+          </div>
+        </div>
+        <div class="project__body">
+          <div class="project__info">
+            <h3 class="project__title">EnerCo — Industrial Chiller Monitoring</h3>
+            <p class="project__desc">
+              A 320-ton Carrier chiller system was being monitored with manual readings and spreadsheets. Energy waste was invisible. Maintenance was reactive.
+            </p>
+            <p class="project__desc">
+              We built a multi-tenant SaaS platform that ingests data from Modbus power meters, LoRaWAN sensors, and flow meters in real-time. The system calculates Energy Efficiency Ratio using ASHRAE psychrometric formulas and surfaces it on live dashboards with 1/7/30-day trending.
+            </p>
+            <div class="project__result">
+              <div class="project__result-item">
+                <strong>Real-time EER</strong>
+                <span>Thermodynamic efficiency calculated live from 6+ sensor types</span>
+              </div>
+              <div class="project__result-item">
+                <strong>Auto-detection</strong>
+                <span>Unified ingestion pipeline normalizes fragmented MQTT payloads from any device type</span>
+              </div>
+              <div class="project__result-item">
+                <strong>Multi-tenant</strong>
+                <span>One platform serves multiple facilities with isolated data and access control</span>
+              </div>
+            </div>
+            <div class="project__stack">
+              <span>AWS IoT Core</span><span>Lambda</span><span>DynamoDB</span><span>AppSync</span><span>Next.js</span><span>Modbus</span><span>LoRaWAN</span><span>MQTT</span>
+            </div>
+          </div>
+          <div class="project__visual">
+            <div class="project__terminal">
+              <div class="project__terminal-bar">
+                <span></span><span></span><span></span>
+              </div>
+              <pre><code><span class="t-comment">// Live sensor ingestion</span>
+<span class="t-key">topic:</span> enerco/sensors/chiller-01
+<span class="t-key">payload:</span> {
+  <span class="t-prop">"supply_temp"</span>: 7.2,
+  <span class="t-prop">"return_temp"</span>: 12.8,
+  <span class="t-prop">"flow_rate"</span>: 45.3,
+  <span class="t-prop">"power_kw"</span>: 89.4,
+  <span class="t-prop">"eer"</span>: <span class="t-val">14.2</span>
+}
+<span class="t-comment">// → Dashboard updated in 10s</span></code></pre>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 2: VendBnB -->
+      <article class="project">
+        <div class="project__header">
+          <div class="project__number">02</div>
+          <div class="project__meta">
+            <span class="project__industry">Retail &middot; Fleet Management</span>
+            <span class="project__type">Full-Stack IoT Platform</span>
+          </div>
+        </div>
+        <div class="project__body">
+          <div class="project__info">
+            <h3 class="project__title">VendBnB — Smart Vending Fleet Platform</h3>
+            <p class="project__desc">
+              Traditional vending machines are black boxes. Operators drive routes to check stock levels. Downtime goes unnoticed for days. Revenue leaks through stale inventory and broken units.
+            </p>
+            <p class="project__desc">
+              We built the entire stack: custom ESP32 firmware that reports inventory, health, and transactions over MQTT — a serverless AWS backend that processes events in real-time — and an admin dashboard where operators manage their entire fleet from one screen. Stripe-integrated payments, WiFi provisioning, and a device simulator for testing without hardware.
+            </p>
+            <div class="project__result">
+              <div class="project__result-item">
+                <strong>Legacy to Connected</strong>
+                <span>Dumb vending machines became real-time reporting IoT devices</span>
+              </div>
+              <div class="project__result-item">
+                <strong>Full Stack Ownership</strong>
+                <span>Firmware + AWS CDK infrastructure + React dashboard + Stripe payments</span>
+              </div>
+              <div class="project__result-item">
+                <strong>Fleet Intelligence</strong>
+                <span>Live monitoring, predictive restocking, and revenue tracking across all machines</span>
+              </div>
+            </div>
+            <div class="project__stack">
+              <span>ESP32</span><span>AWS CDK</span><span>IoT Core</span><span>Lambda</span><span>DynamoDB</span><span>React</span><span>Stripe</span><span>MQTT</span>
+            </div>
+          </div>
+          <div class="project__visual">
+            <div class="project__terminal">
+              <div class="project__terminal-bar">
+                <span></span><span></span><span></span>
+              </div>
+              <pre><code><span class="t-comment">// Fleet status — real-time</span>
+<span class="t-key">machines_online:</span> <span class="t-val">47</span> / 52
+<span class="t-key">alerts:</span> [
+  { <span class="t-prop">"id"</span>: "VM-031", <span class="t-prop">"type"</span>: <span class="t-str">"low_stock"</span> },
+  { <span class="t-prop">"id"</span>: "VM-009", <span class="t-prop">"type"</span>: <span class="t-str">"offline"</span> }
+]
+<span class="t-key">revenue_today:</span> $<span class="t-val">1,247.80</span>
+<span class="t-comment">// → Operator dispatched in 12min</span></code></pre>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 3: AutoGrow -->
+      <article class="project">
+        <div class="project__header">
+          <div class="project__number">03</div>
+          <div class="project__meta">
+            <span class="project__industry">Agriculture &middot; Smart Farming</span>
+            <span class="project__type">Embedded IoT + Autonomous Control</span>
+          </div>
+        </div>
+        <div class="project__body">
+          <div class="project__info">
+            <h3 class="project__title">AutoGrow — Autonomous Hydroponic Station</h3>
+            <p class="project__desc">
+              Hydroponic farms require constant monitoring of pH, electrical conductivity, and nutrient levels. Manual dosing is error-prone and doesn't scale. A pH swing of 0.5 can kill a crop overnight.
+            </p>
+            <p class="project__desc">
+              We designed a fully autonomous growing station that reads sensors in real-time, calculates dosing requirements, and operates pumps with built-in safety limits. The system runs its own web server for local control, syncs to the cloud via MQTT, and displays live readings on an onboard OLED — all on a single ESP32.
+            </p>
+            <div class="project__result">
+              <div class="project__result-item">
+                <strong>Autonomous Dosing</strong>
+                <span>pH and EC corrections with max-dose limits, post-dose wait, and safety cutoffs</span>
+              </div>
+              <div class="project__result-item">
+                <strong>Self-Contained</strong>
+                <span>Web UI, OLED display, cloud sync, and calibration — all on one microcontroller</span>
+              </div>
+              <div class="project__result-item">
+                <strong>Field-Proven</strong>
+                <span>Runs 24/7 with watchdog timers, sensor timeouts, and graceful error recovery</span>
+              </div>
+            </div>
+            <div class="project__stack">
+              <span>ESP32</span><span>DS18B20</span><span>pH Probe</span><span>EC Probe</span><span>MQTT</span><span>LittleFS</span><span>AsyncWebServer</span>
+            </div>
+          </div>
+          <div class="project__visual">
+            <div class="project__terminal">
+              <div class="project__terminal-bar">
+                <span></span><span></span><span></span>
+              </div>
+              <pre><code><span class="t-comment">// AutoGrow — live readings</span>
+<span class="t-key">water_temp:</span>  <span class="t-val">22.4</span>°C
+<span class="t-key">pH:</span>         <span class="t-val">5.92</span>  ✓ (target: 5.8-6.2)
+<span class="t-key">EC:</span>         <span class="t-val">1.84</span> mS/cm
+<span class="t-key">dose_pump:</span>  standby
+<span class="t-key">uptime:</span>     <span class="t-val">14d 7h 32m</span>
+<span class="t-comment">// → Next check in 30s</span></code></pre>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 4: Air-Cam -->
+      <article class="project">
+        <div class="project__header">
+          <div class="project__number">04</div>
+          <div class="project__meta">
+            <span class="project__industry">Remote Monitoring &middot; Vision</span>
+            <span class="project__type">LTE Camera System</span>
+          </div>
+        </div>
+        <div class="project__body">
+          <div class="project__info">
+            <h3 class="project__title">AirCam — LTE-Connected Vision System</h3>
+            <p class="project__desc">
+              Remote sites need eyes on the ground — but WiFi doesn't reach, power is limited, and cellular bandwidth is expensive. Existing solutions are either too dumb (basic IP cameras) or too heavy (full edge servers).
+            </p>
+            <p class="project__desc">
+              We built a compact vision unit on ESP32-S3 with a 5MP OV5640 camera and SIM7670G LTE modem. The firmware chunks 80KB+ images into MQTT packets for reliable transmission over cellular, with circuit breaker retry logic and dual-mode connectivity (LTE in the field, WiFi in the office). A hardware simulation mode lets us develop and test without physical cameras.
+            </p>
+            <div class="project__result">
+              <div class="project__result-item">
+                <strong>Cellular-First</strong>
+                <span>Full LTE Cat-1 connectivity via SIM7670G with automatic failover to WiFi</span>
+              </div>
+              <div class="project__result-item">
+                <strong>Chunked Transport</strong>
+                <span>Large images transmitted reliably over constrained MQTT without buffer overflows</span>
+              </div>
+              <div class="project__result-item">
+                <strong>Field-Ready</strong>
+                <span>Circuit breaker patterns, exponential backoff, and simulation mode for zero-hardware testing</span>
+              </div>
+            </div>
+            <div class="project__stack">
+              <span>ESP32-S3</span><span>ESP-IDF</span><span>OV5640</span><span>SIM7670G</span><span>LTE</span><span>MQTT</span><span>C</span>
+            </div>
+          </div>
+          <div class="project__visual">
+            <div class="project__terminal">
+              <div class="project__terminal-bar">
+                <span></span><span></span><span></span>
+              </div>
+              <pre><code><span class="t-comment">// AirCam — capture + transmit</span>
+<span class="t-key">mode:</span>       <span class="t-str">LTE (SIM7670G)</span>
+<span class="t-key">resolution:</span> 2592x1944 (5MP)
+<span class="t-key">jpeg_size:</span>  <span class="t-val">82,441</span> bytes
+<span class="t-key">chunks:</span>    17 / 17  ✓
+<span class="t-key">latency:</span>   <span class="t-val">3.2s</span>
+<span class="t-key">signal:</span>    -71 dBm (good)
+<span class="t-comment">// → Cloud received, stored to S3</span></code></pre>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="stack" id="stack">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// our stack</span>
+        <h2 class="section-title">Built on what works.<br>Not what's trending.</h2>
+      </div>
+      <div class="stack__grid">
+        <div class="stack__col">
+          <h4>Hardware</h4>
+          <ul>
+            <li>ESP32 / ESP32-S3</li>
+            <li>nRF52832 (Nordic)</li>
+            <li>STM32U5</li>
+            <li>SIM7670G (LTE)</li>
+            <li>OV5640 (Vision)</li>
+          </ul>
+        </div>
+        <div class="stack__col">
+          <h4>Protocols</h4>
+          <ul>
+            <li>MQTT</li>
+            <li>Modbus RTU/TCP</li>
+            <li>BLE 5.0</li>
+            <li>LTE Cat-1</li>
+            <li>LoRaWAN</li>
+          </ul>
+        </div>
+        <div class="stack__col">
+          <h4>Cloud</h4>
+          <ul>
+            <li>AWS IoT Core</li>
+            <li>Lambda + CDK</li>
+            <li>DynamoDB</li>
+            <li>AppSync (GraphQL)</li>
+            <li>Cognito + S3</li>
+          </ul>
+        </div>
+        <div class="stack__col">
+          <h4>Software</h4>
+          <ul>
+            <li>React / Next.js</li>
+            <li>TypeScript</li>
+            <li>ESP-IDF / Arduino</li>
+            <li>TensorFlow Lite</li>
+            <li>Node.js</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team" id="team">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// the team</span>
+        <h2 class="section-title">Three engineers.<br>Zero handoffs.</h2>
+        <p class="section-sub">We're small by design. Every project gets senior-level attention from start to deployment. No account managers, no outsourced layers — you talk to the people building your system.</p>
+      </div>
+      <div class="team__grid">
+        <div class="team__member">
+          <div class="team__avatar">MS</div>
+          <h3>Muhammad Sufian</h3>
+          <span class="team__role">Co-Founder</span>
+          <p>Embedded systems and firmware architecture. Designs the hardware-software interface and owns the device layer — from sensor wiring to production firmware.</p>
+        </div>
+        <div class="team__member">
+          <div class="team__avatar">AM</div>
+          <h3>Ahmed Mohi U Din</h3>
+          <span class="team__role">Co-Founder</span>
+          <p>Cloud infrastructure and backend systems. Architects the AWS pipelines, data models, and APIs that turn raw device data into actionable intelligence.</p>
+        </div>
+        <div class="team__member">
+          <div class="team__avatar">MA</div>
+          <h3>Muhammad Bin Asif</h3>
+          <span class="team__role">Co-Founder</span>
+          <p>Frontend, integrations, and system delivery. Builds the dashboards and interfaces operators use daily, and ensures everything works end-to-end in production.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <div class="container">
+      <div class="cta__inner">
+        <span class="section-tag">// let's talk</span>
+        <h2 class="cta__title">Have a system that needs<br>to get smarter?</h2>
+        <p class="cta__sub">Whether you're modernizing legacy equipment, building a new IoT product, or need a team that can go from schematic to cloud — we should talk.</p>
+        <div class="cta__actions">
+          <a href="mailto:soviotechsolutions@gmail.com" class="btn btn--primary btn--lg">soviotechsolutions@gmail.com</a>
+        </div>
+        <div class="cta__details">
+          <span>Based in Pakistan &middot; Working globally</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <span class="nav__logo-mark">&gt;_</span> soviotech
+        </div>
+        <div class="footer__copy">
+          &copy; 2026 Soviotech. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
