@@ -15,6 +15,8 @@
 </head>
 <body>
 
+  <a href="#main" class="skip-link">Skip to content</a>
+
   <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="nav__inner">
@@ -27,6 +29,7 @@
       <div class="nav__links" id="navLinks">
         <a href="#solutions">Solutions</a>
         <a href="#projects">Projects</a>
+        <a href="#oss">Open Source</a>
         <a href="#stack">Stack</a>
         <a href="#team">Team</a>
         <a href="#contact" class="nav__cta">Start a Project</a>
@@ -35,8 +38,9 @@
   </nav>
 
   <!-- HERO -->
-  <header class="hero">
+  <header class="hero" id="main">
     <div class="hero__grid-bg" aria-hidden="true"></div>
+    <div class="hero__noise" aria-hidden="true"></div>
     <div class="hero__content">
       <div class="hero__tag">IoT &middot; Industrial Automation &middot; Edge AI</div>
       <h1 class="hero__title">
@@ -48,21 +52,24 @@
         We design, build, and deploy complete automation systems<br class="hide-mobile"> that work in the field — not just in demos.
       </p>
       <div class="hero__actions">
-        <a href="#projects" class="btn btn--primary">See Our Work</a>
+        <a href="#projects" class="btn btn--primary btn--magnetic">See Our Work</a>
         <a href="#contact" class="btn btn--ghost">Get in Touch</a>
       </div>
       <div class="hero__stats">
         <div class="hero__stat">
-          <span class="hero__stat-num" data-count="25">0</span><span class="hero__stat-plus">+</span>
-          <span class="hero__stat-label">Systems Deployed</span>
+          <span class="hero__stat-num" data-count="26">0</span>
+          <span class="hero__stat-label">Production repos</span>
+          <span class="hero__stat-sub">12 public &middot; 14 private</span>
         </div>
         <div class="hero__stat">
-          <span class="hero__stat-num" data-count="6">0</span>
-          <span class="hero__stat-label">Industries Served</span>
+          <span class="hero__stat-num" data-count="5">0</span>
+          <span class="hero__stat-label">Industries shipped</span>
+          <span class="hero__stat-sub">HVAC &middot; BMS &middot; Retail &middot; Vision &middot; Sensors</span>
         </div>
         <div class="hero__stat">
-          <span class="hero__stat-num" data-count="100">0</span><span class="hero__stat-plus">%</span>
-          <span class="hero__stat-label">Hardware to Cloud</span>
+          <span class="hero__stat-artifact">&lt; 3.2<span class="hero__stat-unit">s</span></span>
+          <span class="hero__stat-label">Sensor &rarr; cloud latency</span>
+          <span class="hero__stat-sub">Measured end-to-end on AirCam</span>
         </div>
       </div>
     </div>
@@ -71,6 +78,46 @@
       <div class="hero__scroll-line"></div>
     </div>
   </header>
+
+  <!-- MARQUEE — tech in production -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__label">// in production</div>
+    <div class="marquee__viewport">
+      <div class="marquee__track">
+        <span>ESP32-S3</span><span class="marquee__dot"></span>
+        <span>AWS IoT Core</span><span class="marquee__dot"></span>
+        <span>MQTT</span><span class="marquee__dot"></span>
+        <span>Modbus RTU</span><span class="marquee__dot"></span>
+        <span>LoRaWAN</span><span class="marquee__dot"></span>
+        <span>Lambda + CDK</span><span class="marquee__dot"></span>
+        <span>DynamoDB</span><span class="marquee__dot"></span>
+        <span>AppSync</span><span class="marquee__dot"></span>
+        <span>SIM7670G</span><span class="marquee__dot"></span>
+        <span>TensorFlow Lite</span><span class="marquee__dot"></span>
+        <span>Next.js</span><span class="marquee__dot"></span>
+        <span>nRF52</span><span class="marquee__dot"></span>
+        <span>STM32U5</span><span class="marquee__dot"></span>
+        <span>BLE 5.0</span><span class="marquee__dot"></span>
+        <span>ESP-IDF</span><span class="marquee__dot"></span>
+        <!-- duplicated for seamless loop -->
+        <span>ESP32-S3</span><span class="marquee__dot"></span>
+        <span>AWS IoT Core</span><span class="marquee__dot"></span>
+        <span>MQTT</span><span class="marquee__dot"></span>
+        <span>Modbus RTU</span><span class="marquee__dot"></span>
+        <span>LoRaWAN</span><span class="marquee__dot"></span>
+        <span>Lambda + CDK</span><span class="marquee__dot"></span>
+        <span>DynamoDB</span><span class="marquee__dot"></span>
+        <span>AppSync</span><span class="marquee__dot"></span>
+        <span>SIM7670G</span><span class="marquee__dot"></span>
+        <span>TensorFlow Lite</span><span class="marquee__dot"></span>
+        <span>Next.js</span><span class="marquee__dot"></span>
+        <span>nRF52</span><span class="marquee__dot"></span>
+        <span>STM32U5</span><span class="marquee__dot"></span>
+        <span>BLE 5.0</span><span class="marquee__dot"></span>
+        <span>ESP-IDF</span><span class="marquee__dot"></span>
+      </div>
+    </div>
+  </div>
 
   <!-- SOLUTIONS -->
   <section class="solutions" id="solutions">
@@ -81,7 +128,9 @@
         <p class="section-sub">Most companies do firmware OR cloud OR dashboards. We do the entire vertical — and we own every layer.</p>
       </div>
 
-      <div class="solutions__grid">
+      <div class="solutions__grid solutions__grid--bento">
+
+        <!-- Row 1: narrow + wide -->
         <div class="solution-card">
           <div class="solution-card__icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8h2M7 11h4"/></svg>
@@ -93,25 +142,65 @@
           </div>
         </div>
 
-        <div class="solution-card">
-          <div class="solution-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9M8 17l4 4 4-4"/></svg>
+        <div class="solution-card solution-card--wide">
+          <div class="solution-card__body">
+            <div class="solution-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9M8 17l4 4 4-4"/></svg>
+            </div>
+            <h3>Cloud &amp; IoT Infrastructure</h3>
+            <p>AWS IoT Core, Lambda, DynamoDB, AppSync. Multi-tenant architectures with real-time data pipelines. Infrastructure as code, not click-ops.</p>
+            <div class="solution-card__tags">
+              <span>AWS IoT</span><span>MQTT</span><span>CDK</span><span>GraphQL</span><span>DynamoDB</span>
+            </div>
           </div>
-          <h3>Cloud & IoT Infrastructure</h3>
-          <p>AWS IoT Core, Lambda, DynamoDB, AppSync. Multi-tenant architectures with real-time data pipelines. Infrastructure as code, not click-ops.</p>
-          <div class="solution-card__tags">
-            <span>AWS IoT</span><span>MQTT</span><span>CDK</span><span>GraphQL</span><span>DynamoDB</span>
+          <div class="solution-card__demo solution-card__demo--stream" aria-hidden="true">
+            <div class="stream__head">
+              <span class="stream__dot"></span>
+              <span class="stream__label">mqtt &middot; live</span>
+            </div>
+            <div class="stream__feed" id="streamFeed">
+              <div class="stream__row"><span class="t-comment">$</span> <span class="t-key">topic</span> <span class="t-prop">enerco/chiller-01</span> <span class="t-val">eer=14.2</span></div>
+              <div class="stream__row"><span class="t-comment">$</span> <span class="t-key">topic</span> <span class="t-prop">vendbnb/VM-031</span> <span class="t-val">stock=low</span></div>
+              <div class="stream__row"><span class="t-comment">$</span> <span class="t-key">topic</span> <span class="t-prop">vaulta/V-014</span> <span class="t-val">drift=84mV</span></div>
+              <div class="stream__row"><span class="t-comment">$</span> <span class="t-key">topic</span> <span class="t-prop">aircam/north-04</span> <span class="t-val">jpeg=82441b</span></div>
+            </div>
           </div>
         </div>
 
-        <div class="solution-card">
-          <div class="solution-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 5 4-9"/></svg>
+        <!-- Row 2: wide + narrow -->
+        <div class="solution-card solution-card--wide">
+          <div class="solution-card__body">
+            <div class="solution-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 5 4-9"/></svg>
+            </div>
+            <h3>Dashboards &amp; Interfaces</h3>
+            <p>Real-time monitoring UIs that operators actually use. Live data, historical trending, fleet views. React, Next.js, deployed fast.</p>
+            <div class="solution-card__tags">
+              <span>React</span><span>Next.js</span><span>TypeScript</span><span>WebSocket</span>
+            </div>
           </div>
-          <h3>Dashboards & Interfaces</h3>
-          <p>Real-time monitoring UIs that operators actually use. Live data, historical trending, fleet views. React, Next.js, deployed fast.</p>
-          <div class="solution-card__tags">
-            <span>React</span><span>Next.js</span><span>TypeScript</span><span>WebSocket</span>
+          <div class="solution-card__demo solution-card__demo--chart" aria-hidden="true">
+            <div class="chart__head">
+              <div class="chart__meta">
+                <span class="chart__metric">EER</span>
+                <span class="chart__value">14.2</span>
+              </div>
+              <div class="chart__range">7d</div>
+            </div>
+            <svg class="chart__svg" viewBox="0 0 240 80" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#c8ff00" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path class="chart__area" d="M0,55 L20,48 L40,52 L60,40 L80,44 L100,30 L120,34 L140,22 L160,28 L180,18 L200,24 L220,14 L240,20 L240,80 L0,80 Z" fill="url(#chartFill)"/>
+              <path class="chart__line" d="M0,55 L20,48 L40,52 L60,40 L80,44 L100,30 L120,34 L140,22 L160,28 L180,18 L200,24 L220,14 L240,20" fill="none" stroke="#c8ff00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle class="chart__pulse" cx="240" cy="20" r="3" fill="#c8ff00"/>
+            </svg>
+            <div class="chart__axis">
+              <span>Mon</span><span>Wed</span><span>Fri</span><span>Sun</span>
+            </div>
           </div>
         </div>
 
@@ -119,12 +208,13 @@
           <div class="solution-card__icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
           </div>
-          <h3>Edge AI & Vision</h3>
+          <h3>Edge AI &amp; Vision</h3>
           <p>TensorFlow Lite models running on microcontrollers. Sub-200ms inference. On-device intelligence where cloud latency isn't an option.</p>
           <div class="solution-card__tags">
             <span>TFLite</span><span>ESP32-S3</span><span>Computer Vision</span><span>INT8</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -208,13 +298,19 @@
             <div class="project__stack">
               <span>AWS IoT Core</span><span>Lambda</span><span>DynamoDB</span><span>AppSync</span><span>Next.js</span><span>Modbus</span><span>LoRaWAN</span><span>MQTT</span>
             </div>
+            <div class="project__repo">
+              <span class="project__repo-badge project__repo-badge--private">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 4v3h-1.5A1.5 1.5 0 001 8.5v6A1.5 1.5 0 002.5 16h11a1.5 1.5 0 001.5-1.5v-6A1.5 1.5 0 0013.5 7H12V4a4 4 0 00-8 0zm6 3H6V4a2 2 0 014 0v3z"/></svg>
+                Private repo &middot; NDA
+              </span>
+            </div>
           </div>
           <div class="project__visual">
             <div class="project__terminal">
               <div class="project__terminal-bar">
                 <span></span><span></span><span></span>
               </div>
-              <pre><code><span class="t-comment">// Live sensor ingestion</span>
+              <pre aria-hidden="true"><code><span class="t-comment">// Live sensor ingestion</span>
 <span class="t-key">topic:</span> enerco/sensors/chiller-01
 <span class="t-key">payload:</span> {
   <span class="t-prop">"supply_temp"</span>: 7.2,
@@ -264,13 +360,20 @@
             <div class="project__stack">
               <span>ESP32</span><span>AWS CDK</span><span>IoT Core</span><span>Lambda</span><span>DynamoDB</span><span>React</span><span>Stripe</span><span>MQTT</span>
             </div>
+            <div class="project__repo">
+              <a href="https://github.com/SovIoTech/Vendbnb" target="_blank" rel="noopener" class="project__repo-link">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                View on GitHub
+                <span class="project__repo-arrow">→</span>
+              </a>
+            </div>
           </div>
           <div class="project__visual">
             <div class="project__terminal">
               <div class="project__terminal-bar">
                 <span></span><span></span><span></span>
               </div>
-              <pre><code><span class="t-comment">// Fleet status — real-time</span>
+              <pre aria-hidden="true"><code><span class="t-comment">// Fleet status — real-time</span>
 <span class="t-key">machines_online:</span> <span class="t-val">47</span> / 52
 <span class="t-key">alerts:</span> [
   { <span class="t-prop">"id"</span>: "VM-031", <span class="t-prop">"type"</span>: <span class="t-str">"low_stock"</span> },
@@ -283,40 +386,51 @@
         </div>
       </article>
 
-      <!-- PROJECT 3: AutoGrow -->
+      <!-- PROJECT 3: Vaulta -->
       <article class="project">
         <div class="project__header">
           <div class="project__number">03</div>
           <div class="project__meta">
-            <span class="project__industry">Agriculture &middot; Smart Farming</span>
-            <span class="project__type">Embedded IoT + Autonomous Control</span>
+            <span class="project__industry">Energy Storage &middot; BMS</span>
+            <span class="project__type">AI-Driven Sensor Pipeline + Dashboard</span>
           </div>
         </div>
         <div class="project__body">
           <div class="project__info">
-            <h3 class="project__title">AutoGrow — Autonomous Hydroponic Station</h3>
+            <h3 class="project__title">Vaulta — Battery Management Intelligence</h3>
             <p class="project__desc">
-              Hydroponic farms require constant monitoring of pH, electrical conductivity, and nutrient levels. Manual dosing is error-prone and doesn't scale. A pH swing of 0.5 can kill a crop overnight.
+              Energy storage operators run blind. Cell-level health, pack-level drift, and degradation patterns are buried in vendor-locked BMS firmware. By the time a fault surfaces in a quarterly report, the cell is already dead.
             </p>
             <p class="project__desc">
-              We designed a fully autonomous growing station that reads sensors in real-time, calculates dosing requirements, and operates pumps with built-in safety limits. The system runs its own web server for local control, syncs to the cloud via MQTT, and displays live readings on an onboard OLED — all on a single ESP32.
+              We built a complete BMS telemetry stack: a sensor layer that taps directly into pack-level data, a streaming pipeline on AWS that ingests cell voltages and thermals, and a role-aware dashboard where engineers, operators, and clients see exactly what they need — and nothing more. Anomaly detection runs continuously over the cell array.
             </p>
             <div class="project__result">
               <div class="project__result-item">
-                <strong>Autonomous Dosing</strong>
-                <span>pH and EC corrections with max-dose limits, post-dose wait, and safety cutoffs</span>
+                <strong>Cell-Level Visibility</strong>
+                <span>Live voltage, temperature, and SoC per cell — not just pack-level averages</span>
               </div>
               <div class="project__result-item">
-                <strong>Self-Contained</strong>
-                <span>Web UI, OLED display, cloud sync, and calibration — all on one microcontroller</span>
+                <strong>Role-Aware Access</strong>
+                <span>Cognito-backed permissions split engineer / operator / client views from the same data</span>
               </div>
               <div class="project__result-item">
-                <strong>Field-Proven</strong>
-                <span>Runs 24/7 with watchdog timers, sensor timeouts, and graceful error recovery</span>
+                <strong>Anomaly Detection</strong>
+                <span>Continuous outlier scoring on cell drift, thermal runaway precursors, and balance loss</span>
               </div>
             </div>
             <div class="project__stack">
-              <span>ESP32</span><span>DS18B20</span><span>pH Probe</span><span>EC Probe</span><span>MQTT</span><span>LittleFS</span><span>AsyncWebServer</span>
+              <span>ESP32</span><span>BMS</span><span>AWS IoT Core</span><span>Lambda</span><span>DynamoDB</span><span>Cognito</span><span>JavaScript</span><span>MQTT</span>
+            </div>
+            <div class="project__repo">
+              <a href="https://github.com/SovIoTech/Vaulta-Dashboard" target="_blank" rel="noopener" class="project__repo-link">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                Dashboard on GitHub
+                <span class="project__repo-arrow">→</span>
+              </a>
+              <span class="project__repo-badge project__repo-badge--private">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 4v3h-1.5A1.5 1.5 0 001 8.5v6A1.5 1.5 0 002.5 16h11a1.5 1.5 0 001.5-1.5v-6A1.5 1.5 0 0013.5 7H12V4a4 4 0 00-8 0zm6 3H6V4a2 2 0 014 0v3z"/></svg>
+                Firmware private
+              </span>
             </div>
           </div>
           <div class="project__visual">
@@ -324,13 +438,15 @@
               <div class="project__terminal-bar">
                 <span></span><span></span><span></span>
               </div>
-              <pre><code><span class="t-comment">// AutoGrow — live readings</span>
-<span class="t-key">water_temp:</span>  <span class="t-val">22.4</span>°C
-<span class="t-key">pH:</span>         <span class="t-val">5.92</span>  ✓ (target: 5.8-6.2)
-<span class="t-key">EC:</span>         <span class="t-val">1.84</span> mS/cm
-<span class="t-key">dose_pump:</span>  standby
-<span class="t-key">uptime:</span>     <span class="t-val">14d 7h 32m</span>
-<span class="t-comment">// → Next check in 30s</span></code></pre>
+              <pre aria-hidden="true"><code><span class="t-comment">// Vaulta — pack telemetry</span>
+<span class="t-key">pack_id:</span>     V-PACK-014
+<span class="t-key">cells:</span>       <span class="t-val">96</span> active / 96
+<span class="t-key">v_min:</span>       <span class="t-val">3.214</span> V  (cell 47)
+<span class="t-key">v_max:</span>       <span class="t-val">3.298</span> V  (cell 12)
+<span class="t-key">drift:</span>       <span class="t-val">84</span> mV  ⚠ watch
+<span class="t-key">temp_max:</span>    <span class="t-val">31.4</span>°C
+<span class="t-key">soc:</span>         <span class="t-val">78.6</span>%
+<span class="t-comment">// → anomaly: cell 47 trending</span></code></pre>
             </div>
           </div>
         </div>
@@ -371,13 +487,19 @@
             <div class="project__stack">
               <span>ESP32-S3</span><span>ESP-IDF</span><span>OV5640</span><span>SIM7670G</span><span>LTE</span><span>MQTT</span><span>C</span>
             </div>
+            <div class="project__repo">
+              <span class="project__repo-badge project__repo-badge--private">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 4v3h-1.5A1.5 1.5 0 001 8.5v6A1.5 1.5 0 002.5 16h11a1.5 1.5 0 001.5-1.5v-6A1.5 1.5 0 0013.5 7H12V4a4 4 0 00-8 0zm6 3H6V4a2 2 0 014 0v3z"/></svg>
+                Private repo &middot; NDA
+              </span>
+            </div>
           </div>
           <div class="project__visual">
             <div class="project__terminal">
               <div class="project__terminal-bar">
                 <span></span><span></span><span></span>
               </div>
-              <pre><code><span class="t-comment">// AirCam — capture + transmit</span>
+              <pre aria-hidden="true"><code><span class="t-comment">// AirCam — capture + transmit</span>
 <span class="t-key">mode:</span>       <span class="t-str">LTE (SIM7670G)</span>
 <span class="t-key">resolution:</span> 2592x1944 (5MP)
 <span class="t-key">jpeg_size:</span>  <span class="t-val">82,441</span> bytes
@@ -393,6 +515,92 @@
     </div>
   </section>
 
+  <!-- OPEN SOURCE -->
+  <section class="oss" id="oss">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// open source</span>
+        <h2 class="section-title">Tools we ship<br>in the open.</h2>
+        <p class="section-sub">Not every system can be public — but the libraries, debug tools, and reference designs we build along the way are. Pull, fork, file an issue.</p>
+      </div>
+      <div class="oss__grid">
+
+        <a href="https://github.com/SovIoTech/Vaulta-Dashboard" target="_blank" rel="noopener" class="oss__card">
+          <div class="oss__card-head">
+            <svg class="oss__icon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            <span class="oss__card-arrow">→</span>
+          </div>
+          <h3>Vaulta-Dashboard</h3>
+          <p>Front-end for our battery telemetry stack. Live cell views, drift charts, role-based filtering.</p>
+          <div class="oss__card-meta">
+            <span class="oss__lang oss__lang--js"></span> JavaScript
+          </div>
+        </a>
+
+        <a href="https://github.com/SovIoTech/Vendbnb" target="_blank" rel="noopener" class="oss__card">
+          <div class="oss__card-head">
+            <svg class="oss__icon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            <span class="oss__card-arrow">→</span>
+          </div>
+          <h3>Vendbnb</h3>
+          <p>Smart vending fleet platform. Operator dashboard, AWS CDK infra, Stripe-integrated payments.</p>
+          <div class="oss__card-meta">
+            <span class="oss__lang oss__lang--ts"></span> TypeScript
+          </div>
+        </a>
+
+        <a href="https://github.com/SovIoTech/I2C_Debug" target="_blank" rel="noopener" class="oss__card">
+          <div class="oss__card-head">
+            <svg class="oss__icon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            <span class="oss__card-arrow">→</span>
+          </div>
+          <h3>I2C_Debug</h3>
+          <p>Lightweight bus scanner and diagnostic helpers we use to bring up new sensor boards.</p>
+          <div class="oss__card-meta">
+            <span class="oss__lang oss__lang--cpp"></span> C++
+          </div>
+        </a>
+
+        <a href="https://github.com/SovIoTech/raspberry-pi-audio-player" target="_blank" rel="noopener" class="oss__card">
+          <div class="oss__card-head">
+            <svg class="oss__icon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            <span class="oss__card-arrow">→</span>
+          </div>
+          <h3>raspberry-pi-audio-player</h3>
+          <p>Headless audio player tuned for embedded Linux deployments. Drop-in service, no GUI dependencies.</p>
+          <div class="oss__card-meta">
+            <span class="oss__lang oss__lang--py"></span> Python
+          </div>
+        </a>
+
+        <a href="https://github.com/SovIoTech/sovio-crafts" target="_blank" rel="noopener" class="oss__card">
+          <div class="oss__card-head">
+            <svg class="oss__icon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            <span class="oss__card-arrow">→</span>
+          </div>
+          <h3>sovio-crafts</h3>
+          <p>Internal tooling and utilities we open-source as they stabilize. Mixed-purpose monorepo.</p>
+          <div class="oss__card-meta">
+            <span class="oss__lang oss__lang--ts"></span> TypeScript
+          </div>
+        </a>
+
+        <a href="https://github.com/SovIoTech" target="_blank" rel="noopener" class="oss__card oss__card--more">
+          <div class="oss__card-head">
+            <svg class="oss__icon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            <span class="oss__card-arrow">→</span>
+          </div>
+          <h3>github.com/SovIoTech</h3>
+          <p>The full org. Public repos, contribution graphs, and the rest of what we ship in the open.</p>
+          <div class="oss__card-meta">
+            <span class="oss__lang oss__lang--all"></span> All public work
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
   <!-- TECH STACK -->
   <section class="stack" id="stack">
     <div class="container">
@@ -402,7 +610,7 @@
       </div>
       <div class="stack__grid">
         <div class="stack__col">
-          <h4>Hardware</h4>
+          <h4><span class="stack__dot" title="In production"></span>Hardware</h4>
           <ul>
             <li>ESP32 / ESP32-S3</li>
             <li>nRF52832 (Nordic)</li>
@@ -412,7 +620,7 @@
           </ul>
         </div>
         <div class="stack__col">
-          <h4>Protocols</h4>
+          <h4><span class="stack__dot" title="In production"></span>Protocols</h4>
           <ul>
             <li>MQTT</li>
             <li>Modbus RTU/TCP</li>
@@ -422,7 +630,7 @@
           </ul>
         </div>
         <div class="stack__col">
-          <h4>Cloud</h4>
+          <h4><span class="stack__dot" title="In production"></span>Cloud</h4>
           <ul>
             <li>AWS IoT Core</li>
             <li>Lambda + CDK</li>
@@ -432,7 +640,7 @@
           </ul>
         </div>
         <div class="stack__col">
-          <h4>Software</h4>
+          <h4><span class="stack__dot" title="In production"></span>Software</h4>
           <ul>
             <li>React / Next.js</li>
             <li>TypeScript</li>
@@ -455,8 +663,8 @@
       </div>
       <div class="team__grid">
         <div class="team__member">
-          <div class="team__avatar">MS</div>
-          <h3>Muhammad Sufian</h3>
+          <div class="team__avatar">ES</div>
+          <h3>Embedded Systems Engineer</h3>
           <span class="team__role">Co-Founder</span>
           <p>Embedded systems and firmware architecture. Designs the hardware-software interface and owns the device layer — from sensor wiring to production firmware.</p>
         </div>
@@ -467,8 +675,8 @@
           <p>Cloud infrastructure and backend systems. Architects the AWS pipelines, data models, and APIs that turn raw device data into actionable intelligence.</p>
         </div>
         <div class="team__member">
-          <div class="team__avatar">MA</div>
-          <h3>Muhammad Bin Asif</h3>
+          <div class="team__avatar">FE</div>
+          <h3>Frontend &amp; Integrations Engineer</h3>
           <span class="team__role">Co-Founder</span>
           <p>Frontend, integrations, and system delivery. Builds the dashboards and interfaces operators use daily, and ensures everything works end-to-end in production.</p>
         </div>
@@ -484,7 +692,7 @@
         <h2 class="cta__title">Have a system that needs<br>to get smarter?</h2>
         <p class="cta__sub">Whether you're modernizing legacy equipment, building a new IoT product, or need a team that can go from schematic to cloud — we should talk.</p>
         <div class="cta__actions">
-          <a href="mailto:soviotechsolutions@gmail.com" class="btn btn--primary btn--lg">soviotechsolutions@gmail.com</a>
+          <a href="mailto:soviotechsolutions@gmail.com" class="btn btn--primary btn--lg btn--magnetic">soviotechsolutions@gmail.com</a>
         </div>
         <div class="cta__details">
           <span>Based in Pakistan &middot; Working globally</span>
@@ -499,6 +707,10 @@
       <div class="footer__inner">
         <div class="footer__brand">
           <span class="nav__logo-mark">&gt;_</span> soviotech
+        </div>
+        <div class="footer__status" title="All deployed systems reporting healthy">
+          <span class="footer__status-dot"></span>
+          <span>All systems operational</span>
         </div>
         <div class="footer__copy">
           &copy; 2026 Soviotech. All rights reserved.

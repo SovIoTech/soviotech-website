@@ -48,7 +48,7 @@ function animateCounters() {
 
 // -- Scroll reveal --
 const reveals = document.querySelectorAll(
-  '.solution-card, .project, .process__step, .team__member, .stack__col, .hero__stat'
+  '.solution-card, .project, .process__step, .process__connector, .team__member, .stack__col, .hero__stat, .oss__card'
 );
 
 const observer = new IntersectionObserver((entries) => {
@@ -61,6 +61,88 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
 reveals.forEach(el => observer.observe(el));
+
+// -- Terminal type-on-scroll --
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function tokenizeHTML(html) {
+  const tokens = [];
+  let i = 0;
+  while (i < html.length) {
+    if (html[i] === '<') {
+      const end = html.indexOf('>', i);
+      tokens.push({ tag: true, value: html.slice(i, end + 1) });
+      i = end + 1;
+    } else if (html[i] === '&') {
+      const end = html.indexOf(';', i);
+      if (end > -1 && end - i <= 8) {
+        tokens.push({ tag: false, value: html.slice(i, end + 1) });
+        i = end + 1;
+        continue;
+      }
+      tokens.push({ tag: false, value: html[i] });
+      i++;
+    } else {
+      tokens.push({ tag: false, value: html[i] });
+      i++;
+    }
+  }
+  return tokens;
+}
+
+const terminals = document.querySelectorAll('.project__terminal code');
+const terminalState = new WeakMap();
+
+terminals.forEach(code => {
+  const original = code.innerHTML;
+  terminalState.set(code, { original, tokens: tokenizeHTML(original), typed: false });
+  if (!reduceMotion) {
+    code.innerHTML = '<span class="t-caret">&nbsp;</span>';
+  }
+});
+
+function typeTerminal(code) {
+  const state = terminalState.get(code);
+  if (!state || state.typed) return;
+  state.typed = true;
+
+  if (reduceMotion) {
+    code.innerHTML = state.original;
+    return;
+  }
+
+  let buffer = '';
+  let idx = 0;
+  const charDelay = 8;
+  const tagFlush = () => {
+    while (idx < state.tokens.length && state.tokens[idx].tag) {
+      buffer += state.tokens[idx++].value;
+    }
+  };
+
+  function step() {
+    tagFlush();
+    if (idx >= state.tokens.length) {
+      code.innerHTML = buffer + '<span class="t-caret">&nbsp;</span>';
+      return;
+    }
+    buffer += state.tokens[idx++].value;
+    code.innerHTML = buffer + '<span class="t-caret">&nbsp;</span>';
+    setTimeout(step, charDelay);
+  }
+  step();
+}
+
+const terminalObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      typeTerminal(entry.target);
+      terminalObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.4, rootMargin: '0px 0px -10% 0px' });
+
+terminals.forEach(code => terminalObserver.observe(code));
 
 // Observe stats section for counter animation
 const statsObserver = new IntersectionObserver((entries) => {
@@ -90,6 +172,25 @@ function rotateText() {
 }
 
 setInterval(rotateText, 3000);
+
+// -- Magnetic CTAs --
+if (!reduceMotion) {
+  document.querySelectorAll('.btn--magnetic').forEach(btn => {
+    const strength = 0.25;
+    const cap = 8;
+    btn.addEventListener('pointermove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const dx = (e.clientX - rect.left - rect.width / 2) * strength;
+      const dy = (e.clientY - rect.top - rect.height / 2) * strength;
+      const tx = Math.max(-cap, Math.min(cap, dx));
+      const ty = Math.max(-cap, Math.min(cap, dy));
+      btn.style.transform = `translate(${tx}px, ${ty}px)`;
+    });
+    btn.addEventListener('pointerleave', () => {
+      btn.style.transform = '';
+    });
+  });
+}
 
 // -- Smooth scroll --
 document.querySelectorAll('a[href^="#"]').forEach(a => {
