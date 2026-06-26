@@ -1,0 +1,4 @@
+[build]
+  # ponytail: static site — nothing to build, publish the repo root.
+  command = ""
+  publish = "."
