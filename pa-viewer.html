@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GaN PA · Explode · Soviotech</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0b; --bg-2:#111113; --surface:#16161a;
+    --border:#2a2a32; --text:#e8e6e3; --text-2:#9d9b97; --text-3:#6b6966;
+    --accent:#c8ff00; --accent-dim:rgba(200,255,0,.08);
+    --font:'Space Grotesk',-apple-system,sans-serif;
+    --mono:'JetBrains Mono',monospace;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow:hidden}
+
+  #canvas{position:fixed;inset:0;display:block;cursor:grab;touch-action:none}
+  #canvas:active{cursor:grabbing}
+
+  .hud{position:fixed;top:18px;left:18px;font-family:var(--mono);font-size:.78rem;color:var(--text-2);pointer-events:none}
+  .hud b{color:var(--accent)}
+  .hud .crumb{font-size:.7rem;color:var(--text-3);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+
+  .meta{position:fixed;top:18px;right:18px;font-family:var(--mono);font-size:.7rem;color:var(--text-3);letter-spacing:.12em;text-transform:uppercase;text-align:right;pointer-events:none}
+  .meta b{display:block;color:var(--text);font-size:.78rem;margin-top:2px;letter-spacing:.05em}
+
+  .tick{position:fixed;width:18px;height:18px;border:1px solid var(--accent);opacity:.45;pointer-events:none}
+  .tick.tl{top:14px;left:14px;border-right:0;border-bottom:0}
+  .tick.tr{top:14px;right:14px;border-left:0;border-bottom:0}
+  .tick.bl{bottom:14px;left:14px;border-right:0;border-top:0}
+  .tick.br{bottom:14px;right:14px;border-left:0;border-top:0}
+
+  .panel{
+    position:fixed;left:50%;bottom:24px;transform:translateX(-50%);
+    display:flex;flex-direction:column;gap:10px;align-items:center;
+    background:rgba(16,16,20,.78);backdrop-filter:blur(14px);
+    border:1px solid var(--border);border-radius:14px;padding:14px 22px;
+    min-width:min(560px,calc(100vw - 36px));
+  }
+  .row{display:flex;align-items:center;gap:14px;width:100%}
+  .label{font-family:var(--mono);font-size:.7rem;color:var(--text-3);letter-spacing:.16em;text-transform:uppercase;min-width:60px}
+  .val{font-family:var(--mono);font-size:.78rem;color:var(--accent);min-width:48px;text-align:right}
+
+  input[type=range]{flex:1;-webkit-appearance:none;appearance:none;background:transparent;height:24px;cursor:pointer}
+  input[type=range]::-webkit-slider-runnable-track{height:3px;background:var(--border);border-radius:2px}
+  input[type=range]::-moz-range-track{height:3px;background:var(--border);border-radius:2px}
+  input[type=range]::-moz-range-progress{height:3px;background:var(--accent);border-radius:2px}
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;width:16px;height:16px;border-radius:50%;
+    background:var(--accent);margin-top:-7px;cursor:grab;
+    box-shadow:0 0 0 4px rgba(200,255,0,.18);
+  }
+  input[type=range]::-moz-range-thumb{
+    width:16px;height:16px;border-radius:50%;background:var(--accent);border:0;cursor:grab;
+    box-shadow:0 0 0 4px rgba(200,255,0,.18);
+  }
+
+  .btns{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+  .pill{
+    font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+    background:transparent;color:var(--text-2);
+    border:1px solid var(--border);border-radius:6px;padding:7px 12px;cursor:pointer;
+  }
+  .pill:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+  .pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+
+  .loading{
+    position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+    background:var(--bg);font-family:var(--mono);font-size:.85rem;color:var(--text-2);letter-spacing:.1em;z-index:20;
+  }
+  .loading.hidden{display:none}
+  .loading::before{
+    content:"";display:inline-block;width:10px;height:10px;border-radius:50%;
+    background:var(--accent);margin-right:14px;
+    animation:pulse 1s ease-in-out infinite;
+  }
+  @keyframes pulse{50%{opacity:.25}}
+</style>
+</head>
+<body>
+
+<canvas id="canvas"></canvas>
+
+<div id="loading" class="loading">loading assemblies</div>
+
+<span class="tick tl"></span><span class="tick tr"></span>
+<span class="tick bl"></span><span class="tick br"></span>
+
+<div class="hud">
+  <div><b>&gt;_</b> soviotech</div>
+  <div class="crumb">GaN PA · explode</div>
+</div>
+
+<div class="meta">
+  <div>STATE<b id="stateLabel">ASSEMBLED</b></div>
+</div>
+
+<div class="panel">
+  <div class="row">
+    <span class="label">Explode</span>
+    <input id="exp" type="range" min="0" max="100" value="0" step="1">
+    <span class="val" id="expVal">0%</span>
+  </div>
+  <div class="btns">
+    <button class="pill" data-set="0">Assembled</button>
+    <button class="pill" data-set="50">Half</button>
+    <button class="pill" data-set="100">Exploded</button>
+    <button class="pill" id="autoBtn">Auto orbit</button>
+    <button class="pill" id="resetBtn">Recenter</button>
+  </div>
+  <div class="btns" id="lightBtns">
+    <button class="pill active" data-light="studio">Studio</button>
+    <button class="pill" data-light="soft">Soft</button>
+    <button class="pill" data-light="hard">Hard sun</button>
+    <button class="pill" data-light="neon">Neon</button>
+    <button class="pill" data-light="night">Night</button>
+  </div>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const canvas = document.getElementById('canvas');
+const loadingEl = document.getElementById('loading');
+const slider = document.getElementById('exp');
+const sliderVal = document.getElementById('expVal');
+const stateLabel = document.getElementById('stateLabel');
+const autoBtn = document.getElementById('autoBtn');
+const resetBtn = document.getElementById('resetBtn');
+
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight, false);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0e0e10);
+
+const pmrem = new THREE.PMREMGenerator(renderer);
+
+const camera = new THREE.PerspectiveCamera(35, innerWidth / innerHeight, 0.05, 200);
+camera.position.set(0.45, 0.35, 0.6);
+
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.rotateSpeed = 0.8;
+controls.zoomSpeed = 0.9;
+controls.panSpeed = 0.7;
+controls.minDistance = 0.05;
+controls.maxDistance = 20;
+controls.autoRotateSpeed = 0.6;
+
+const lightRig = new THREE.Group();
+scene.add(lightRig);
+
+const LIGHT_PRESETS = {
+  studio: () => {
+    const key = new THREE.DirectionalLight(0xffffff, 1.2);
+    key.position.set(2, 3, 1.5);
+    const rim = new THREE.DirectionalLight(0xc8ff00, 0.35);
+    rim.position.set(-2, 1, -2);
+    return [key, rim];
+  },
+  soft: () => [
+    new THREE.HemisphereLight(0xffffff, 0x202028, 1.0),
+    new THREE.AmbientLight(0xffffff, 0.25),
+  ],
+  hard: () => {
+    const sun = new THREE.DirectionalLight(0xffffff, 2.4);
+    sun.position.set(3, 4, 2);
+    return [sun];
+  },
+  neon: () => {
+    const a = new THREE.DirectionalLight(0xc8ff00, 1.1); a.position.set(2, 2, 2);
+    const b = new THREE.DirectionalLight(0xff3df5, 0.9); b.position.set(-2, -1, -2);
+    const c = new THREE.AmbientLight(0x1a1a22, 0.6);
+    return [a, b, c];
+  },
+  night: () => {
+    const moon = new THREE.DirectionalLight(0x8fb6ff, 0.8); moon.position.set(-2, 3, 1);
+    const fill = new THREE.HemisphereLight(0x223355, 0x080810, 0.4);
+    return [moon, fill];
+  },
+};
+
+let currentEnv = null;
+function applyLighting(name) {
+  while (lightRig.children.length) lightRig.remove(lightRig.children[0]);
+  LIGHT_PRESETS[name]().forEach(l => lightRig.add(l));
+  const useEnv = name === 'studio' || name === 'soft';
+  scene.environment = useEnv ? currentEnv : null;
+  scene.background = new THREE.Color(name === 'night' ? 0x05060a : name === 'neon' ? 0x100818 : 0x0e0e10);
+}
+
+const draco = new DRACOLoader();
+draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
+const loader = new GLTFLoader();
+loader.setDRACOLoader(draco);
+loader.setMeshoptDecoder(MeshoptDecoder);
+
+// ponytail: standalone glb — no baked explode clip, push each top-level child
+// outward from the model centroid along its own direction
+const pairs = [];
+
+function loadGLTF(url) {
+  return new Promise((res, rej) => loader.load(url, g => res(g), undefined, rej));
+}
+
+async function init() {
+  currentEnv = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+  applyLighting('studio');
+
+  const gltf = await loadGLTF('assets/renders/gan-pa-mechanical.glb');
+  const base = gltf.scene;
+  scene.add(base);
+
+  const fullBox = new THREE.Box3().setFromObject(base);
+  const modelCenter = fullBox.getCenter(new THREE.Vector3());
+  const modelSize = fullBox.getSize(new THREE.Vector3()).length();
+  const tmpBox = new THREE.Box3();
+  const tmpCenter = new THREE.Vector3();
+
+  base.children.slice().forEach(child => {
+    tmpBox.setFromObject(child);
+    if (tmpBox.isEmpty()) return;
+    tmpBox.getCenter(tmpCenter);
+    const dir = tmpCenter.clone().sub(modelCenter);
+    if (dir.lengthSq() < 1e-8) dir.set(0, 1, 0);
+    dir.normalize().multiplyScalar(modelSize * 0.55);
+    pairs.push({
+      node: child,
+      p0: child.position.clone(),
+      p1: child.position.clone().add(dir),
+    });
+  });
+
+  controls.target.copy(modelCenter);
+  camera.position.copy(modelCenter).add(new THREE.Vector3(modelSize * 0.9, modelSize * 0.55, modelSize * 0.9));
+  camera.near = modelSize / 200;
+  camera.far = modelSize * 50;
+  camera.updateProjectionMatrix();
+  controls.saveState();
+  controls.update();
+
+  loadingEl.classList.add('hidden');
+}
+
+const tmpP = new THREE.Vector3();
+let target = 0;
+let current = 0;
+
+function applyExplode(t) {
+  for (const r of pairs) {
+    tmpP.lerpVectors(r.p0, r.p1, t);
+    r.node.position.copy(tmpP);
+  }
+}
+
+function setSlider(v) {
+  slider.value = v;
+  sliderVal.textContent = v + '%';
+  target = v / 100;
+  stateLabel.textContent =
+    target === 0 ? 'ASSEMBLED' :
+    target === 1 ? 'EXPLODED' :
+    'TRANSITION';
+}
+
+let autoCycle = true;
+function stopAuto() { autoCycle = false; autoBtn.classList.remove('active'); }
+
+slider.addEventListener('input', e => { stopAuto(); setSlider(+e.target.value); });
+
+document.querySelectorAll('[data-set]').forEach(b => {
+  b.addEventListener('click', () => { stopAuto(); setSlider(+b.dataset.set); });
+});
+
+autoBtn.addEventListener('click', () => {
+  autoCycle = !autoCycle;
+  controls.autoRotate = autoCycle;
+  autoBtn.classList.toggle('active', autoCycle);
+});
+
+controls.autoRotate = true;
+autoBtn.classList.add('active');
+
+resetBtn.addEventListener('click', () => controls.reset());
+
+document.querySelectorAll('[data-light]').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('[data-light]').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    applyLighting(b.dataset.light);
+  });
+});
+
+const clock = new THREE.Clock();
+function tick() {
+  requestAnimationFrame(tick);
+  const t = clock.getElapsedTime();
+  if (autoCycle) {
+    const v = 0.5 - 0.5 * Math.cos((t / 3) * Math.PI);
+    setSlider(Math.round(v * 100));
+  }
+  current += (target - current) * 0.18;
+  if (Math.abs(target - current) < 1e-4) current = target;
+  applyExplode(current);
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight, false);
+});
+
+init().catch(err => {
+  loadingEl.textContent = 'Failed to load model. Please refresh the page.';
+  console.error('[sujood-viewer] load failed:', err);
+});
+
+tick();
+</script>
+
+</body>
+</html>

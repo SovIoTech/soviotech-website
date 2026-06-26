@@ -3,15 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soviotech — We Automate What Matters</title>
-  <meta name="description" content="Soviotech builds end-to-end IoT and industrial automation systems. From embedded firmware to cloud dashboards — we turn legacy operations into intelligent, connected infrastructure.">
+  <title>Soviotech | End-to-End IoT, Embedded &amp; RF Engineering</title>
+  <meta name="description" content="Soviotech ships production hardware, firmware, cloud, and RF systems. One team owns the sensor, the cloud, and the screen.">
   <meta name="theme-color" content="#0a0a0b">
   <meta name="msapplication-TileColor" content="#0a0a0b">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="tab-logo-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="tab-logo-dark.png" media="(prefers-color-scheme: dark)">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+  <link rel="canonical" href="https://soviotech.com/">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="author" content="Soviotech">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Soviotech">
+  <meta property="og:url" content="https://soviotech.com/">
+  <meta property="og:title" content="Soviotech | End-to-End IoT, Embedded &amp; RF Engineering">
+  <meta property="og:description" content="Soviotech ships production hardware, firmware, cloud, and RF systems. One team owns the sensor, the cloud, and the screen.">
+  <meta property="og:image" content="https://soviotech.com/og/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Soviotech | End-to-End IoT, Embedded &amp; RF Engineering">
+  <meta name="twitter:description" content="Soviotech ships production hardware, firmware, cloud, and RF systems. One team owns the sensor, the cloud, and the screen.">
+  <meta name="twitter:image" content="https://soviotech.com/og/og-home.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Soviotech",
+  "url": "https://soviotech.com/",
+  "logo": "https://soviotech.com/logo.png",
+  "email": "info@soviotech.com",
+  "description": "Small engineering studio shipping production hardware, firmware, cloud, and RF systems.",
+  "areaServed": "Worldwide",
+  "sameAs": [ "https://github.com/SovIoTech" ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Soviotech",
+  "url": "https://soviotech.com/",
+  "publisher": { "@type": "Organization", "name": "Soviotech" }
+}
+</script>
 </head>
 <body>
 
@@ -21,18 +60,18 @@
   <nav class="nav" id="nav">
     <div class="nav__inner">
       <a href="#" class="nav__logo">
-        <span class="nav__logo-mark">&gt;_</span> soviotech
+        <img src="logo.png" alt="SovIoTech" class="nav__logo-img" width="203" height="68">
       </a>
       <button class="nav__toggle" id="navToggle" aria-label="Menu">
         <span></span><span></span>
       </button>
       <div class="nav__links" id="navLinks">
-        <a href="#solutions">Solutions</a>
-        <a href="#projects">Projects</a>
-        <a href="#oss">Open Source</a>
-        <a href="#stack">Stack</a>
-        <a href="#team">Team</a>
-        <a href="#contact" class="nav__cta">Start a Project</a>
+        <a href="/work">Work</a>
+        <a href="/about">About</a>
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+        <a href="#contact" class="nav__cta">Get in touch</a>
       </div>
     </div>
   </nav>
@@ -42,34 +81,34 @@
     <div class="hero__grid-bg" aria-hidden="true"></div>
     <div class="hero__noise" aria-hidden="true"></div>
     <div class="hero__content">
-      <div class="hero__tag">IoT &middot; Industrial Automation &middot; Edge AI</div>
+      <div class="hero__tag">IoT, Industrial Automation, Edge AI</div>
       <h1 class="hero__title">
         We automate<br>
         <span class="hero__title-accent" id="rotatingText">what matters.</span>
       </h1>
       <p class="hero__sub">
         From sensor to cloud. From legacy hardware to real-time intelligence.<br>
-        We design, build, and deploy complete automation systems<br class="hide-mobile"> that work in the field — not just in demos.
+        We design, build, and deploy complete automation systems<br class="hide-mobile"> that work in the field, not just in demos.
       </p>
       <div class="hero__actions">
-        <a href="#projects" class="btn btn--primary btn--magnetic">See Our Work</a>
+        <a href="/work" class="btn btn--primary btn--magnetic">See Our Work</a>
         <a href="#contact" class="btn btn--ghost">Get in Touch</a>
       </div>
       <div class="hero__stats">
         <div class="hero__stat">
-          <span class="hero__stat-num" data-count="26">0</span>
+          <span class="hero__stat-num" data-count="27">0</span>
           <span class="hero__stat-label">Production repos</span>
-          <span class="hero__stat-sub">12 public &middot; 14 private</span>
+          <span class="hero__stat-sub">13 public, 14 private</span>
         </div>
         <div class="hero__stat">
-          <span class="hero__stat-num" data-count="5">0</span>
+          <span class="hero__stat-num" data-count="6">0</span>
           <span class="hero__stat-label">Industries shipped</span>
-          <span class="hero__stat-sub">HVAC &middot; BMS &middot; Retail &middot; Vision &middot; Sensors</span>
+          <span class="hero__stat-sub">HVAC, BMS, Retail, Vision, RF, Wearables</span>
         </div>
         <div class="hero__stat">
-          <span class="hero__stat-artifact">&lt; 3.2<span class="hero__stat-unit">s</span></span>
-          <span class="hero__stat-label">Sensor &rarr; cloud latency</span>
-          <span class="hero__stat-sub">Measured end-to-end on AirCam</span>
+          <span class="hero__stat-num" data-count="8">0</span>
+          <span class="hero__stat-label">Products in market</span>
+          <span class="hero__stat-sub">Shipped across HVAC, retail, RF, wearables</span>
         </div>
       </div>
     </div>
@@ -79,623 +118,299 @@
     </div>
   </header>
 
-  <!-- MARQUEE — tech in production -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee__label">// in production</div>
-    <div class="marquee__viewport">
-      <div class="marquee__track">
-        <span>ESP32-S3</span><span class="marquee__dot"></span>
-        <span>AWS IoT Core</span><span class="marquee__dot"></span>
-        <span>MQTT</span><span class="marquee__dot"></span>
-        <span>Modbus RTU</span><span class="marquee__dot"></span>
-        <span>LoRaWAN</span><span class="marquee__dot"></span>
-        <span>Lambda + CDK</span><span class="marquee__dot"></span>
-        <span>DynamoDB</span><span class="marquee__dot"></span>
-        <span>AppSync</span><span class="marquee__dot"></span>
-        <span>SIM7670G</span><span class="marquee__dot"></span>
-        <span>TensorFlow Lite</span><span class="marquee__dot"></span>
-        <span>Next.js</span><span class="marquee__dot"></span>
-        <span>nRF52</span><span class="marquee__dot"></span>
-        <span>STM32U5</span><span class="marquee__dot"></span>
-        <span>BLE 5.0</span><span class="marquee__dot"></span>
-        <span>ESP-IDF</span><span class="marquee__dot"></span>
-        <!-- duplicated for seamless loop -->
-        <span>ESP32-S3</span><span class="marquee__dot"></span>
-        <span>AWS IoT Core</span><span class="marquee__dot"></span>
-        <span>MQTT</span><span class="marquee__dot"></span>
-        <span>Modbus RTU</span><span class="marquee__dot"></span>
-        <span>LoRaWAN</span><span class="marquee__dot"></span>
-        <span>Lambda + CDK</span><span class="marquee__dot"></span>
-        <span>DynamoDB</span><span class="marquee__dot"></span>
-        <span>AppSync</span><span class="marquee__dot"></span>
-        <span>SIM7670G</span><span class="marquee__dot"></span>
-        <span>TensorFlow Lite</span><span class="marquee__dot"></span>
-        <span>Next.js</span><span class="marquee__dot"></span>
-        <span>nRF52</span><span class="marquee__dot"></span>
-        <span>STM32U5</span><span class="marquee__dot"></span>
-        <span>BLE 5.0</span><span class="marquee__dot"></span>
-        <span>ESP-IDF</span><span class="marquee__dot"></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- SOLUTIONS -->
-  <section class="solutions" id="solutions">
+  <!-- MOBILE: simple stub replacing the heavy carousel -->
+  <section class="projects-mobile">
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">// what we do</span>
-        <h2 class="section-title">Full-stack automation.<br>Not just a piece of the puzzle.</h2>
-        <p class="section-sub">Most companies do firmware OR cloud OR dashboards. We do the entire vertical — and we own every layer.</p>
-      </div>
-
-      <div class="solutions__grid solutions__grid--bento">
-
-        <!-- Row 1: narrow + wide -->
-        <div class="solution-card">
-          <div class="solution-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8h2M7 11h4"/></svg>
-          </div>
-          <h3>Embedded Systems</h3>
-          <p>Custom firmware on ESP32, nRF52, STM32. Sensor integration, motor control, wireless protocols. Production-grade, not prototype-grade.</p>
-          <div class="solution-card__tags">
-            <span>ESP-IDF</span><span>Arduino</span><span>BLE</span><span>LTE</span><span>Modbus</span>
-          </div>
-        </div>
-
-        <div class="solution-card solution-card--wide">
-          <div class="solution-card__body">
-            <div class="solution-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9M8 17l4 4 4-4"/></svg>
-            </div>
-            <h3>Cloud &amp; IoT Infrastructure</h3>
-            <p>AWS IoT Core, Lambda, DynamoDB, AppSync. Multi-tenant architectures with real-time data pipelines. Infrastructure as code, not click-ops.</p>
-            <div class="solution-card__tags">
-              <span>AWS IoT</span><span>MQTT</span><span>CDK</span><span>GraphQL</span><span>DynamoDB</span>
-            </div>
-          </div>
-          <div class="solution-card__demo solution-card__demo--stream" aria-hidden="true">
-            <div class="stream__head">
-              <span class="stream__dot"></span>
-              <span class="stream__label">mqtt &middot; live</span>
-            </div>
-            <div class="stream__feed" id="streamFeed">
-              <div class="stream__row"><span class="t-comment">$</span> <span class="t-key">topic</span> <span class="t-prop">enerco/chiller-01</span> <span class="t-val">eer=14.2</span></div>
-              <div class="stream__row"><span class="t-comment">$</span> <span class="t-key">topic</span> <span class="t-prop">vendbnb/VM-031</span> <span class="t-val">stock=low</span></div>
-              <div class="stream__row"><span class="t-comment">$</span> <span class="t-key">topic</span> <span class="t-prop">vaulta/V-014</span> <span class="t-val">drift=84mV</span></div>
-              <div class="stream__row"><span class="t-comment">$</span> <span class="t-key">topic</span> <span class="t-prop">aircam/north-04</span> <span class="t-val">jpeg=82441b</span></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Row 2: wide + narrow -->
-        <div class="solution-card solution-card--wide">
-          <div class="solution-card__body">
-            <div class="solution-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 5 4-9"/></svg>
-            </div>
-            <h3>Dashboards &amp; Interfaces</h3>
-            <p>Real-time monitoring UIs that operators actually use. Live data, historical trending, fleet views. React, Next.js, deployed fast.</p>
-            <div class="solution-card__tags">
-              <span>React</span><span>Next.js</span><span>TypeScript</span><span>WebSocket</span>
-            </div>
-          </div>
-          <div class="solution-card__demo solution-card__demo--chart" aria-hidden="true">
-            <div class="chart__head">
-              <div class="chart__meta">
-                <span class="chart__metric">EER</span>
-                <span class="chart__value">14.2</span>
-              </div>
-              <div class="chart__range">7d</div>
-            </div>
-            <svg class="chart__svg" viewBox="0 0 240 80" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.35"/>
-                  <stop offset="100%" stop-color="#c8ff00" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path class="chart__area" d="M0,55 L20,48 L40,52 L60,40 L80,44 L100,30 L120,34 L140,22 L160,28 L180,18 L200,24 L220,14 L240,20 L240,80 L0,80 Z" fill="url(#chartFill)"/>
-              <path class="chart__line" d="M0,55 L20,48 L40,52 L60,40 L80,44 L100,30 L120,34 L140,22 L160,28 L180,18 L200,24 L220,14 L240,20" fill="none" stroke="#c8ff00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle class="chart__pulse" cx="240" cy="20" r="3" fill="#c8ff00"/>
-            </svg>
-            <div class="chart__axis">
-              <span>Mon</span><span>Wed</span><span>Fri</span><span>Sun</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="solution-card">
-          <div class="solution-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-          </div>
-          <h3>Edge AI &amp; Vision</h3>
-          <p>TensorFlow Lite models running on microcontrollers. Sub-200ms inference. On-device intelligence where cloud latency isn't an option.</p>
-          <div class="solution-card__tags">
-            <span>TFLite</span><span>ESP32-S3</span><span>Computer Vision</span><span>INT8</span>
-          </div>
-        </div>
-
-      </div>
+      <span class="section-tag">// selected work</span>
+      <h2 class="section-title">Real systems.<br>Production deployments.</h2>
+      <p class="section-sub">25 projects across RF, embedded firmware, IoT, and edge AI, each with source and a case study.</p>
+      <a href="/work" class="btn btn--primary btn--lg" style="margin-top: 28px;">Browse all work &rarr;</a>
     </div>
   </section>
 
-  <!-- PROCESS -->
-  <section class="process">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">// how we work</span>
-        <h2 class="section-title">Sensor to dashboard.<br>One team. One pipeline.</h2>
-      </div>
-      <div class="process__steps">
-        <div class="process__step">
-          <div class="process__step-num">01</div>
-          <h3>Discover</h3>
-          <p>Understand the physical system, the constraints, the data that matters. We visit the site, read the datasheets, map the signals.</p>
-        </div>
-        <div class="process__connector" aria-hidden="true"></div>
-        <div class="process__step">
-          <div class="process__step-num">02</div>
-          <h3>Design</h3>
-          <p>Hardware selection, communication architecture, cloud topology. We spec everything before writing a single line of code.</p>
-        </div>
-        <div class="process__connector" aria-hidden="true"></div>
-        <div class="process__step">
-          <div class="process__step-num">03</div>
-          <h3>Build</h3>
-          <p>Firmware, cloud backend, and frontend developed in parallel. Phased delivery so you see progress early and often.</p>
-        </div>
-        <div class="process__connector" aria-hidden="true"></div>
-        <div class="process__step">
-          <div class="process__step-num">04</div>
-          <h3>Deploy</h3>
-          <p>Field installation, validation, monitoring. We don't hand off a ZIP file — we deploy, verify, and support the system in production.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
+  <!-- PROJECTS, sticky-stack carousel (desktop only) -->
   <section class="projects" id="projects">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">// selected work</span>
         <h2 class="section-title">Real systems solving<br>real problems.</h2>
-        <p class="section-sub">These aren't demos. These are deployed systems handling live data in production environments.</p>
+        <p class="section-sub">These aren't demos. These are deployed systems handling live data in production environments. Scroll. Each card stacks over the last.</p>
       </div>
+    </div>
 
-      <!-- PROJECT 1: EnerCo -->
-      <article class="project">
-        <div class="project__header">
-          <div class="project__number">01</div>
-          <div class="project__meta">
-            <span class="project__industry">Energy &middot; HVAC</span>
-            <span class="project__type">SaaS Platform + Hardware Integration</span>
-          </div>
+    <div class="stack-rail">
+      <div class="stack-rail__cards">
+      <div class="stack-stage">
+        <aside class="stack-rail__title" id="stackTitle">
+          <div class="stack-rail__date">PROJECT 01 / 05</div>
+          <div class="stack-rail__name">VIO Wrist</div>
+        </aside>
+      <!-- PROJECT 1: VIO Wrist -->
+      <article class="stack-card" data-date="PROJECT 01 / 05" data-name="VIO Wrist">
+        <div class="stack-card__chrome">
+          <img src="logo.png" alt="" class="stack-card__brand" aria-hidden="true" width="107" height="36">
+          <span class="stack-card__tag">VIO, WRIST CAPTURE UNIT</span>
+          <span class="stack-card__num">01</span>
         </div>
-        <div class="project__body">
+        <div class="stack-card__body">
           <div class="project__info">
-            <h3 class="project__title">EnerCo — Industrial Chiller Monitoring</h3>
-            <p class="project__desc">
-              A 320-ton Carrier chiller system was being monitored with manual readings and spreadsheets. Energy waste was invisible. Maintenance was reactive.
-            </p>
-            <p class="project__desc">
-              We built a multi-tenant SaaS platform that ingests data from Modbus power meters, LoRaWAN sensors, and flow meters in real-time. The system calculates Energy Efficiency Ratio using ASHRAE psychrometric formulas and surfaces it on live dashboards with 1/7/30-day trending.
-            </p>
-            <div class="project__result">
-              <div class="project__result-item">
-                <strong>Real-time EER</strong>
-                <span>Thermodynamic efficiency calculated live from 6+ sensor types</span>
-              </div>
-              <div class="project__result-item">
-                <strong>Auto-detection</strong>
-                <span>Unified ingestion pipeline normalizes fragmented MQTT payloads from any device type</span>
-              </div>
-              <div class="project__result-item">
-                <strong>Multi-tenant</strong>
-                <span>One platform serves multiple facilities with isolated data and access control</span>
-              </div>
-            </div>
+            <span class="project__industry">Wearable, Edge Vision</span>
+            <span class="project__type">Wrist-worn VIO unit</span>
+            <h3 class="project__title">VIO Wrist Capture Unit</h3>
+            <p class="project__desc">Compact wrist-worn visual-inertial capture device. Onboard IMU + camera fused for sub-frame pose tracking, BLE companion app, on-board logging.</p>
             <div class="project__stack">
-              <span>AWS IoT Core</span><span>Lambda</span><span>DynamoDB</span><span>AppSync</span><span>Next.js</span><span>Modbus</span><span>LoRaWAN</span><span>MQTT</span>
+              <span>VIO</span><span>BLE</span><span>IMU</span><span>Camera</span>
             </div>
             <div class="project__repo">
-              <span class="project__repo-badge project__repo-badge--private">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 4v3h-1.5A1.5 1.5 0 001 8.5v6A1.5 1.5 0 002.5 16h11a1.5 1.5 0 001.5-1.5v-6A1.5 1.5 0 0013.5 7H12V4a4 4 0 00-8 0zm6 3H6V4a2 2 0 014 0v3z"/></svg>
-                Private repo &middot; NDA
-              </span>
-            </div>
-          </div>
-          <div class="project__visual">
-            <div class="project__terminal">
-              <div class="project__terminal-bar">
-                <span></span><span></span><span></span>
-              </div>
-              <pre aria-hidden="true"><code><span class="t-comment">// Live sensor ingestion</span>
-<span class="t-key">topic:</span> enerco/sensors/chiller-01
-<span class="t-key">payload:</span> {
-  <span class="t-prop">"supply_temp"</span>: 7.2,
-  <span class="t-prop">"return_temp"</span>: 12.8,
-  <span class="t-prop">"flow_rate"</span>: 45.3,
-  <span class="t-prop">"power_kw"</span>: 89.4,
-  <span class="t-prop">"eer"</span>: <span class="t-val">14.2</span>
-}
-<span class="t-comment">// → Dashboard updated in 10s</span></code></pre>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- PROJECT 2: VendBnB -->
-      <article class="project">
-        <div class="project__header">
-          <div class="project__number">02</div>
-          <div class="project__meta">
-            <span class="project__industry">Retail &middot; Fleet Management</span>
-            <span class="project__type">Full-Stack IoT Platform</span>
-          </div>
-        </div>
-        <div class="project__body">
-          <div class="project__info">
-            <h3 class="project__title">VendBnB — Smart Vending Fleet Platform</h3>
-            <p class="project__desc">
-              Traditional vending machines are black boxes. Operators drive routes to check stock levels. Downtime goes unnoticed for days. Revenue leaks through stale inventory and broken units.
-            </p>
-            <p class="project__desc">
-              We built the entire stack: custom ESP32 firmware that reports inventory, health, and transactions over MQTT — a serverless AWS backend that processes events in real-time — and an admin dashboard where operators manage their entire fleet from one screen. Stripe-integrated payments, WiFi provisioning, and a device simulator for testing without hardware.
-            </p>
-            <div class="project__result">
-              <div class="project__result-item">
-                <strong>Legacy to Connected</strong>
-                <span>Dumb vending machines became real-time reporting IoT devices</span>
-              </div>
-              <div class="project__result-item">
-                <strong>Full Stack Ownership</strong>
-                <span>Firmware + AWS CDK infrastructure + React dashboard + Stripe payments</span>
-              </div>
-              <div class="project__result-item">
-                <strong>Fleet Intelligence</strong>
-                <span>Live monitoring, predictive restocking, and revenue tracking across all machines</span>
-              </div>
-            </div>
-            <div class="project__stack">
-              <span>ESP32</span><span>AWS CDK</span><span>IoT Core</span><span>Lambda</span><span>DynamoDB</span><span>React</span><span>Stripe</span><span>MQTT</span>
-            </div>
-            <div class="project__repo">
-              <a href="https://github.com/SovIoTech/Vendbnb" target="_blank" rel="noopener" class="project__repo-link">
+              <a href="https://github.com/SovIoTech/VIO-Wrist-Capture-Unit" target="_blank" rel="noopener noreferrer" class="project__repo-link">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                View on GitHub
+                View repo
+                <span class="project__repo-arrow">→</span>
+              </a>
+              <a href="https://github.com/SovIoTech/VIO-Wrist-Capture-Unit/blob/main/CASE_STUDY.pdf" target="_blank" rel="noopener noreferrer" class="project__repo-link">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2zM6 4h8v8H6V4zm-4 4a2 2 0 012-2v8h8a2 2 0 01-2 2H4a2 2 0 01-2-2V8z"/></svg>
+                Case study
                 <span class="project__repo-arrow">→</span>
               </a>
             </div>
           </div>
-          <div class="project__visual">
-            <div class="project__terminal">
-              <div class="project__terminal-bar">
-                <span></span><span></span><span></span>
+          <div class="project__render">
+            <model-viewer
+              src="assets/renders/vio-assembly.glb"
+              alt="VIO wrist capture unit"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="0"
+              rotation-per-second="18deg"
+              shadow-intensity="0.8"
+              exposure="0.95"
+              environment-image="assets/renders/studio-env.hdr"
+              skybox-image=""
+              tone-mapping="aces"
+              loading="lazy"
+              reveal="auto"
+              style="width:100%;height:100%;background:transparent;--poster-color:transparent">
+              <div slot="poster" class="project__render-placeholder">
+                <span class="project__render-label">3D render</span>
+                <span class="project__render-hint">Loading…</span>
               </div>
-              <pre aria-hidden="true"><code><span class="t-comment">// Fleet status — real-time</span>
-<span class="t-key">machines_online:</span> <span class="t-val">47</span> / 52
-<span class="t-key">alerts:</span> [
-  { <span class="t-prop">"id"</span>: "VM-031", <span class="t-prop">"type"</span>: <span class="t-str">"low_stock"</span> },
-  { <span class="t-prop">"id"</span>: "VM-009", <span class="t-prop">"type"</span>: <span class="t-str">"offline"</span> }
-]
-<span class="t-key">revenue_today:</span> $<span class="t-val">1,247.80</span>
-<span class="t-comment">// → Operator dispatched in 12min</span></code></pre>
-            </div>
+            </model-viewer>
           </div>
         </div>
       </article>
 
-      <!-- PROJECT 3: Vaulta -->
-      <article class="project">
-        <div class="project__header">
-          <div class="project__number">03</div>
-          <div class="project__meta">
-            <span class="project__industry">Energy Storage &middot; BMS</span>
-            <span class="project__type">AI-Driven Sensor Pipeline + Dashboard</span>
-          </div>
+      <!-- PROJECT 2: Dual-Coil Vape -->
+      <article class="stack-card" data-date="PROJECT 02 / 05" data-name="Dual-Coil Vape">
+        <div class="stack-card__chrome">
+          <img src="logo.png" alt="" class="stack-card__brand" aria-hidden="true" width="107" height="36">
+          <span class="stack-card__tag">DUAL-COIL VAPE, POWER PLATFORM</span>
+          <span class="stack-card__num">02</span>
         </div>
-        <div class="project__body">
+        <div class="stack-card__body">
           <div class="project__info">
-            <h3 class="project__title">Vaulta — Battery Management Intelligence</h3>
-            <p class="project__desc">
-              Energy storage operators run blind. Cell-level health, pack-level drift, and degradation patterns are buried in vendor-locked BMS firmware. By the time a fault surfaces in a quarterly report, the cell is already dead.
-            </p>
-            <p class="project__desc">
-              We built a complete BMS telemetry stack: a sensor layer that taps directly into pack-level data, a streaming pipeline on AWS that ingests cell voltages and thermals, and a role-aware dashboard where engineers, operators, and clients see exactly what they need — and nothing more. Anomaly detection runs continuously over the cell array.
-            </p>
-            <div class="project__result">
-              <div class="project__result-item">
-                <strong>Cell-Level Visibility</strong>
-                <span>Live voltage, temperature, and SoC per cell — not just pack-level averages</span>
-              </div>
-              <div class="project__result-item">
-                <strong>Role-Aware Access</strong>
-                <span>Cognito-backed permissions split engineer / operator / client views from the same data</span>
-              </div>
-              <div class="project__result-item">
-                <strong>Anomaly Detection</strong>
-                <span>Continuous outlier scoring on cell drift, thermal runaway precursors, and balance loss</span>
-              </div>
-            </div>
+            <span class="project__industry">Power Electronics, Control</span>
+            <span class="project__type">Dual-coil heating platform</span>
+            <h3 class="project__title">Dual-Coil Vape Platform</h3>
+            <p class="project__desc">Dual-coil heater driver with closed-loop temperature control, safety lockout, and battery-fuel-gauge integration. Bench-tested across the full duty cycle.</p>
             <div class="project__stack">
-              <span>ESP32</span><span>BMS</span><span>AWS IoT Core</span><span>Lambda</span><span>DynamoDB</span><span>Cognito</span><span>JavaScript</span><span>MQTT</span>
+              <span>Power</span><span>Closed-loop</span><span>MCU</span><span>Safety</span>
             </div>
             <div class="project__repo">
-              <a href="https://github.com/SovIoTech/Vaulta-Dashboard" target="_blank" rel="noopener" class="project__repo-link">
+              <a href="https://github.com/SovIoTech/Dual-Coil-Vape-Platform" target="_blank" rel="noopener noreferrer" class="project__repo-link">
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-                Dashboard on GitHub
+                View repo
                 <span class="project__repo-arrow">→</span>
               </a>
-              <span class="project__repo-badge project__repo-badge--private">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 4v3h-1.5A1.5 1.5 0 001 8.5v6A1.5 1.5 0 002.5 16h11a1.5 1.5 0 001.5-1.5v-6A1.5 1.5 0 0013.5 7H12V4a4 4 0 00-8 0zm6 3H6V4a2 2 0 014 0v3z"/></svg>
-                Firmware private
-              </span>
+              <a href="https://github.com/SovIoTech/Dual-Coil-Vape-Platform/blob/main/CASE_STUDY.pdf" target="_blank" rel="noopener noreferrer" class="project__repo-link">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2zM6 4h8v8H6V4zm-4 4a2 2 0 012-2v8h8a2 2 0 01-2 2H4a2 2 0 01-2-2V8z"/></svg>
+                Case study
+                <span class="project__repo-arrow">→</span>
+              </a>
             </div>
           </div>
-          <div class="project__visual">
-            <div class="project__terminal">
-              <div class="project__terminal-bar">
-                <span></span><span></span><span></span>
-              </div>
-              <pre aria-hidden="true"><code><span class="t-comment">// Vaulta — pack telemetry</span>
-<span class="t-key">pack_id:</span>     V-PACK-014
-<span class="t-key">cells:</span>       <span class="t-val">96</span> active / 96
-<span class="t-key">v_min:</span>       <span class="t-val">3.214</span> V  (cell 47)
-<span class="t-key">v_max:</span>       <span class="t-val">3.298</span> V  (cell 12)
-<span class="t-key">drift:</span>       <span class="t-val">84</span> mV  ⚠ watch
-<span class="t-key">temp_max:</span>    <span class="t-val">31.4</span>°C
-<span class="t-key">soc:</span>         <span class="t-val">78.6</span>%
-<span class="t-comment">// → anomaly: cell 47 trending</span></code></pre>
-            </div>
+          <div class="project__render">
+            <iframe src="vape-viewer.html" title="Dual-coil vape exploded view" loading="lazy" style="width:100%;height:100%;border:0;background:transparent"></iframe>
           </div>
         </div>
       </article>
 
-      <!-- PROJECT 4: Air-Cam -->
-      <article class="project">
-        <div class="project__header">
-          <div class="project__number">04</div>
-          <div class="project__meta">
-            <span class="project__industry">Remote Monitoring &middot; Vision</span>
-            <span class="project__type">LTE Camera System</span>
-          </div>
+      <!-- PROJECT 3: RF Switch Board -->
+      <article class="stack-card" data-date="PROJECT 03 / 05" data-name="RF Switch Board">
+        <div class="stack-card__chrome">
+          <img src="logo.png" alt="" class="stack-card__brand" aria-hidden="true" width="107" height="36">
+          <span class="stack-card__tag">RF SWITCH, SPDT FABRIC</span>
+          <span class="stack-card__num">03</span>
         </div>
-        <div class="project__body">
+        <div class="stack-card__body">
           <div class="project__info">
-            <h3 class="project__title">AirCam — LTE-Connected Vision System</h3>
-            <p class="project__desc">
-              Remote sites need eyes on the ground — but WiFi doesn't reach, power is limited, and cellular bandwidth is expensive. Existing solutions are either too dumb (basic IP cameras) or too heavy (full edge servers).
-            </p>
-            <p class="project__desc">
-              We built a compact vision unit on ESP32-S3 with a 5MP OV5640 camera and SIM7670G LTE modem. The firmware chunks 80KB+ images into MQTT packets for reliable transmission over cellular, with circuit breaker retry logic and dual-mode connectivity (LTE in the field, WiFi in the office). A hardware simulation mode lets us develop and test without physical cameras.
-            </p>
-            <div class="project__result">
-              <div class="project__result-item">
-                <strong>Cellular-First</strong>
-                <span>Full LTE Cat-1 connectivity via SIM7670G with automatic failover to WiFi</span>
-              </div>
-              <div class="project__result-item">
-                <strong>Chunked Transport</strong>
-                <span>Large images transmitted reliably over constrained MQTT without buffer overflows</span>
-              </div>
-              <div class="project__result-item">
-                <strong>Field-Ready</strong>
-                <span>Circuit breaker patterns, exponential backoff, and simulation mode for zero-hardware testing</span>
-              </div>
-            </div>
+            <span class="project__industry">RF, Test &amp; Measurement</span>
+            <span class="project__type">RF SPDT switch board</span>
+            <h3 class="project__title">RF Switch Board</h3>
+            <p class="project__desc">Any-antenna-to-any-chain switch fabric for multi-antenna receivers and bench measurement setups. Enclosure-sized board with logic-level control lines on a header, drivable from an MCU or test host — beats the cost and form factor of off-the-shelf eval boards.</p>
             <div class="project__stack">
-              <span>ESP32-S3</span><span>ESP-IDF</span><span>OV5640</span><span>SIM7670G</span><span>LTE</span><span>MQTT</span><span>C</span>
+              <span>RF</span><span>SPDT</span><span>Low loss</span><span>Test</span>
             </div>
             <div class="project__repo">
-              <span class="project__repo-badge project__repo-badge--private">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 4v3h-1.5A1.5 1.5 0 001 8.5v6A1.5 1.5 0 002.5 16h11a1.5 1.5 0 001.5-1.5v-6A1.5 1.5 0 0013.5 7H12V4a4 4 0 00-8 0zm6 3H6V4a2 2 0 014 0v3z"/></svg>
-                Private repo &middot; NDA
-              </span>
+              <a href="https://github.com/SovIoTech/RF-Switch-Board" target="_blank" rel="noopener noreferrer" class="project__repo-link">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                View repo
+                <span class="project__repo-arrow">→</span>
+              </a>
+              <a href="https://github.com/SovIoTech/RF-Switch-Board/blob/main/CASE_STUDY.pdf" target="_blank" rel="noopener noreferrer" class="project__repo-link">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2zM6 4h8v8H6V4zm-4 4a2 2 0 012-2v8h8a2 2 0 01-2 2H4a2 2 0 01-2-2V8z"/></svg>
+                Case study
+                <span class="project__repo-arrow">→</span>
+              </a>
             </div>
           </div>
-          <div class="project__visual">
-            <div class="project__terminal">
-              <div class="project__terminal-bar">
-                <span></span><span></span><span></span>
+          <div class="project__render">
+            <model-viewer
+              src="assets/renders/rf-switch-board.glb"
+              alt="RF SPDT switch board"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="0"
+              rotation-per-second="18deg"
+              shadow-intensity="0.6"
+              exposure="0.85"
+              tone-mapping="commerce"
+              environment-image="legacy"
+              loading="lazy"
+              reveal="auto"
+              style="width:100%;height:100%;background:transparent;--poster-color:transparent;filter:saturate(1.4) contrast(1.12)">
+              <div slot="poster" class="project__render-placeholder">
+                <span class="project__render-label">3D render</span>
+                <span class="project__render-hint">Loading…</span>
               </div>
-              <pre aria-hidden="true"><code><span class="t-comment">// AirCam — capture + transmit</span>
-<span class="t-key">mode:</span>       <span class="t-str">LTE (SIM7670G)</span>
-<span class="t-key">resolution:</span> 2592x1944 (5MP)
-<span class="t-key">jpeg_size:</span>  <span class="t-val">82,441</span> bytes
-<span class="t-key">chunks:</span>    17 / 17  ✓
-<span class="t-key">latency:</span>   <span class="t-val">3.2s</span>
-<span class="t-key">signal:</span>    -71 dBm (good)
-<span class="t-comment">// → Cloud received, stored to S3</span></code></pre>
-            </div>
+            </model-viewer>
           </div>
         </div>
       </article>
 
-    </div>
+      <!-- PROJECT 4: Sujood Counter -->
+      <article class="stack-card" data-date="PROJECT 04 / 05" data-name="Sujood Counter">
+        <div class="stack-card__chrome">
+          <img src="logo.png" alt="" class="stack-card__brand" aria-hidden="true" width="107" height="36">
+          <span class="stack-card__tag">SUJOOD COUNTER, WEARABLE</span>
+          <span class="stack-card__num">04</span>
+        </div>
+        <div class="stack-card__body">
+          <div class="project__info">
+            <span class="project__industry">Under-mat Device, Religious Tech</span>
+            <span class="project__type">Prostration-counting device</span>
+            <h3 class="project__title">Sujood Counter</h3>
+            <p class="project__desc">Low-power under-mat device that detects and counts sujood (prostration) during prayer. Slim enclosure that sits beneath the prayer mat, IMU-based detection, embedded display.</p>
+            <div class="project__stack">
+              <span>IMU</span><span>Embedded</span><span>Low power</span><span>BLE</span>
+            </div>
+            <div class="project__repo">
+              <a href="https://github.com/SovIoTech/Sujood-Counter" target="_blank" rel="noopener noreferrer" class="project__repo-link">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                View repo
+                <span class="project__repo-arrow">→</span>
+              </a>
+              <a href="https://github.com/SovIoTech/Sujood-Counter/blob/main/CASE_STUDY.pdf" target="_blank" rel="noopener noreferrer" class="project__repo-link">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2zM6 4h8v8H6V4zm-4 4a2 2 0 012-2v8h8a2 2 0 01-2 2H4a2 2 0 01-2-2V8z"/></svg>
+                Case study
+                <span class="project__repo-arrow">→</span>
+              </a>
+            </div>
+          </div>
+          <div class="project__render">
+            <model-viewer
+              src="sujood_counter.glb"
+              alt="Sujood counter under-mat device"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="0"
+              rotation-per-second="18deg"
+              shadow-intensity="0.7"
+              exposure="1"
+              environment-image="neutral"
+              loading="lazy"
+              reveal="auto"
+              style="width:100%;height:100%;background:transparent;--poster-color:transparent">
+              <div slot="poster" class="project__render-placeholder">
+                <span class="project__render-label">3D render</span>
+                <span class="project__render-hint">Loading…</span>
+              </div>
+            </model-viewer>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 5: GaN PA -->
+      <article class="stack-card" data-date="PROJECT 05 / 05" data-name="GaN PA">
+        <div class="stack-card__chrome">
+          <img src="logo.png" alt="" class="stack-card__brand" aria-hidden="true" width="107" height="36">
+          <span class="stack-card__tag">GaN POWER AMPLIFIER, 5-6 GHz</span>
+          <span class="stack-card__num">05</span>
+        </div>
+        <div class="stack-card__body">
+          <div class="project__info">
+            <span class="project__industry">RF, Power Amplifier</span>
+            <span class="project__type">GaN PA, 5-6 GHz, 10 W</span>
+            <h3 class="project__title">GaN Power Amplifier 5-6 GHz 10 W</h3>
+            <p class="project__desc">C-band GaN HEMT power amplifier targeting 10 W output. Matching networks, bias, and thermal layer designed for continuous duty.</p>
+            <div class="project__stack">
+              <span>GaN</span><span>C-band</span><span>PA</span><span>10 W</span>
+            </div>
+            <div class="project__repo">
+              <a href="https://github.com/SovIoTech/GaN-Power-Amplifier-5-to-6-GHz-10-W" target="_blank" rel="noopener noreferrer" class="project__repo-link">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                View repo
+                <span class="project__repo-arrow">→</span>
+              </a>
+              <a href="https://github.com/SovIoTech/GaN-Power-Amplifier-5-to-6-GHz-10-W/blob/main/CASE_STUDY.pdf" target="_blank" rel="noopener noreferrer" class="project__repo-link">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2zM6 4h8v8H6V4zm-4 4a2 2 0 012-2v8h8a2 2 0 01-2 2H4a2 2 0 01-2-2V8z"/></svg>
+                Case study
+                <span class="project__repo-arrow">→</span>
+              </a>
+            </div>
+          </div>
+          <div class="project__render">
+            <model-viewer
+              src="assets/renders/gan-pa-mechanical.glb"
+              alt="GaN power amplifier 5-6 GHz 10 W"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="0"
+              rotation-per-second="18deg"
+              shadow-intensity="0.7"
+              exposure="1"
+              environment-image="neutral"
+              loading="lazy"
+              reveal="auto"
+              style="width:100%;height:100%;background:transparent;--poster-color:transparent">
+              <div slot="poster" class="project__render-placeholder">
+                <span class="project__render-label">3D render</span>
+                <span class="project__render-hint">Loading…</span>
+              </div>
+            </model-viewer>
+          </div>
+        </div>
+      </article>
+      </div><!-- /.stack-stage -->
+      <div class="stack-spacer"></div>
+      <div class="stack-spacer"></div>
+      <div class="stack-spacer"></div>
+      <div class="stack-spacer"></div>
+      <div class="stack-spacer"></div>
+      </div><!-- /.stack-rail__cards -->
+    </div><!-- /.stack-rail -->
   </section>
 
-  <!-- OPEN SOURCE -->
-  <section class="oss" id="oss">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">// open source</span>
-        <h2 class="section-title">Tools we ship<br>in the open.</h2>
-        <p class="section-sub">Not every system can be public — but the libraries, debug tools, and reference designs we build along the way are. Pull, fork, file an issue.</p>
-      </div>
-      <div class="oss__grid">
-
-        <a href="https://github.com/SovIoTech/Vaulta-Dashboard" target="_blank" rel="noopener" class="oss__card">
-          <div class="oss__card-head">
-            <svg class="oss__icon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-            <span class="oss__card-arrow">→</span>
-          </div>
-          <h3>Vaulta-Dashboard</h3>
-          <p>Front-end for our battery telemetry stack. Live cell views, drift charts, role-based filtering.</p>
-          <div class="oss__card-meta">
-            <span class="oss__lang oss__lang--js"></span> JavaScript
-          </div>
-        </a>
-
-        <a href="https://github.com/SovIoTech/Vendbnb" target="_blank" rel="noopener" class="oss__card">
-          <div class="oss__card-head">
-            <svg class="oss__icon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-            <span class="oss__card-arrow">→</span>
-          </div>
-          <h3>Vendbnb</h3>
-          <p>Smart vending fleet platform. Operator dashboard, AWS CDK infra, Stripe-integrated payments.</p>
-          <div class="oss__card-meta">
-            <span class="oss__lang oss__lang--ts"></span> TypeScript
-          </div>
-        </a>
-
-        <a href="https://github.com/SovIoTech/I2C_Debug" target="_blank" rel="noopener" class="oss__card">
-          <div class="oss__card-head">
-            <svg class="oss__icon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-            <span class="oss__card-arrow">→</span>
-          </div>
-          <h3>I2C_Debug</h3>
-          <p>Lightweight bus scanner and diagnostic helpers we use to bring up new sensor boards.</p>
-          <div class="oss__card-meta">
-            <span class="oss__lang oss__lang--cpp"></span> C++
-          </div>
-        </a>
-
-        <a href="https://github.com/SovIoTech/raspberry-pi-audio-player" target="_blank" rel="noopener" class="oss__card">
-          <div class="oss__card-head">
-            <svg class="oss__icon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-            <span class="oss__card-arrow">→</span>
-          </div>
-          <h3>raspberry-pi-audio-player</h3>
-          <p>Headless audio player tuned for embedded Linux deployments. Drop-in service, no GUI dependencies.</p>
-          <div class="oss__card-meta">
-            <span class="oss__lang oss__lang--py"></span> Python
-          </div>
-        </a>
-
-        <a href="https://github.com/SovIoTech/sovio-crafts" target="_blank" rel="noopener" class="oss__card">
-          <div class="oss__card-head">
-            <svg class="oss__icon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-            <span class="oss__card-arrow">→</span>
-          </div>
-          <h3>sovio-crafts</h3>
-          <p>Internal tooling and utilities we open-source as they stabilize. Mixed-purpose monorepo.</p>
-          <div class="oss__card-meta">
-            <span class="oss__lang oss__lang--ts"></span> TypeScript
-          </div>
-        </a>
-
-        <a href="https://github.com/SovIoTech" target="_blank" rel="noopener" class="oss__card oss__card--more">
-          <div class="oss__card-head">
-            <svg class="oss__icon" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-            <span class="oss__card-arrow">→</span>
-          </div>
-          <h3>github.com/SovIoTech</h3>
-          <p>The full org. Public repos, contribution graphs, and the rest of what we ship in the open.</p>
-          <div class="oss__card-meta">
-            <span class="oss__lang oss__lang--all"></span> All public work
-          </div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- TECH STACK -->
-  <section class="stack" id="stack">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">// our stack</span>
-        <h2 class="section-title">Built on what works.<br>Not what's trending.</h2>
-      </div>
-      <div class="stack__grid">
-        <div class="stack__col">
-          <h4><span class="stack__dot" title="In production"></span>Hardware</h4>
-          <ul>
-            <li>ESP32 / ESP32-S3</li>
-            <li>nRF52832 (Nordic)</li>
-            <li>STM32U5</li>
-            <li>SIM7670G (LTE)</li>
-            <li>OV5640 (Vision)</li>
-          </ul>
-        </div>
-        <div class="stack__col">
-          <h4><span class="stack__dot" title="In production"></span>Protocols</h4>
-          <ul>
-            <li>MQTT</li>
-            <li>Modbus RTU/TCP</li>
-            <li>BLE 5.0</li>
-            <li>LTE Cat-1</li>
-            <li>LoRaWAN</li>
-          </ul>
-        </div>
-        <div class="stack__col">
-          <h4><span class="stack__dot" title="In production"></span>Cloud</h4>
-          <ul>
-            <li>AWS IoT Core</li>
-            <li>Lambda + CDK</li>
-            <li>DynamoDB</li>
-            <li>AppSync (GraphQL)</li>
-            <li>Cognito + S3</li>
-          </ul>
-        </div>
-        <div class="stack__col">
-          <h4><span class="stack__dot" title="In production"></span>Software</h4>
-          <ul>
-            <li>React / Next.js</li>
-            <li>TypeScript</li>
-            <li>ESP-IDF / Arduino</li>
-            <li>TensorFlow Lite</li>
-            <li>Node.js</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM -->
-  <section class="team" id="team">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">// the team</span>
-        <h2 class="section-title">Three engineers.<br>Zero handoffs.</h2>
-        <p class="section-sub">We're small by design. Every project gets senior-level attention from start to deployment. No account managers, no outsourced layers — you talk to the people building your system.</p>
-      </div>
-      <div class="team__grid">
-        <div class="team__member">
-          <div class="team__avatar">ES</div>
-          <h3>Embedded Systems Engineer</h3>
-          <span class="team__role">Co-Founder</span>
-          <p>Embedded systems and firmware architecture. Designs the hardware-software interface and owns the device layer — from sensor wiring to production firmware.</p>
-        </div>
-        <div class="team__member">
-          <div class="team__avatar">AM</div>
-          <h3>Ahmed Mohi U Din</h3>
-          <span class="team__role">Co-Founder</span>
-          <p>Cloud infrastructure and backend systems. Architects the AWS pipelines, data models, and APIs that turn raw device data into actionable intelligence.</p>
-        </div>
-        <div class="team__member">
-          <div class="team__avatar">FE</div>
-          <h3>Frontend &amp; Integrations Engineer</h3>
-          <span class="team__role">Co-Founder</span>
-          <p>Frontend, integrations, and system delivery. Builds the dashboards and interfaces operators use daily, and ensures everything works end-to-end in production.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
   <section class="cta" id="contact">
     <div class="container">
       <div class="cta__inner">
         <span class="section-tag">// let's talk</span>
         <h2 class="cta__title">Have a system that needs<br>to get smarter?</h2>
-        <p class="cta__sub">Whether you're modernizing legacy equipment, building a new IoT product, or need a team that can go from schematic to cloud — we should talk.</p>
+        <p class="cta__sub">Whether you're modernizing legacy equipment, building a new IoT product, or need a team that can go from schematic to cloud, we should talk.</p>
         <div class="cta__actions">
-          <a href="mailto:soviotechsolutions@gmail.com" class="btn btn--primary btn--lg btn--magnetic">soviotechsolutions@gmail.com</a>
+          <a href="mailto:info@soviotech.com" class="btn btn--primary btn--lg btn--magnetic">info@soviotech.com</a>
         </div>
         <div class="cta__details">
-          <span>Based in Pakistan &middot; Working globally</span>
+          <span>Based in Pakistan, Working globally</span>
         </div>
       </div>
     </div>
@@ -706,7 +421,7 @@
     <div class="container">
       <div class="footer__inner">
         <div class="footer__brand">
-          <span class="nav__logo-mark">&gt;_</span> soviotech
+          <img src="logo.png" alt="SovIoTech" class="footer__logo-img" width="203" height="68">
         </div>
         <div class="footer__status" title="All deployed systems reporting healthy">
           <span class="footer__status-dot"></span>

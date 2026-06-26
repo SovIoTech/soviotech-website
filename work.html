@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work | Embedded, RF &amp; IoT Engineering Portfolio | Soviotech</title>
+  <meta name="description" content="25 shipped projects in RF, embedded firmware, IoT, and edge AI. Source repo and a two-page case study with every one.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/png" href="tab-logo-light.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" href="tab-logo-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://soviotech.com/work">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="author" content="Soviotech">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Soviotech">
+  <meta property="og:url" content="https://soviotech.com/work">
+  <meta property="og:title" content="Work | Embedded, RF &amp; IoT Engineering Portfolio | Soviotech">
+  <meta property="og:description" content="25 shipped projects in RF, embedded firmware, IoT, and edge AI. Source repo and a two-page case study with every one.">
+  <meta property="og:image" content="https://soviotech.com/og/og-work.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Work | Embedded, RF &amp; IoT Engineering Portfolio | Soviotech">
+  <meta name="twitter:description" content="25 shipped projects in RF, embedded firmware, IoT, and edge AI. Source repo and a two-page case study with every one.">
+  <meta name="twitter:image" content="https://soviotech.com/og/og-work.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Soviotech",
+  "url": "https://soviotech.com/",
+  "logo": "https://soviotech.com/logo.png",
+  "email": "info@soviotech.com",
+  "description": "Small engineering studio shipping production hardware, firmware, cloud, and RF systems.",
+  "areaServed": "Worldwide",
+  "sameAs": [ "https://github.com/SovIoTech" ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Soviotech Work",
+  "url": "https://soviotech.com/work",
+  "isPartOf": { "@type": "WebSite", "name": "Soviotech", "url": "https://soviotech.com/" }
+}
+</script>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">
+        <img src="logo.png" alt="SovIoTech" class="nav__logo-img" width="203" height="68">
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+      <div class="nav__links" id="navLinks">
+        <a href="/">Home</a>
+        <a href="/work" class="nav__link--active">Work</a>
+        <a href="/about">About</a>
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+        <a href="/#contact" class="nav__cta">Get in touch</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="work-hero" id="main">
+    <div class="container">
+      <div class="hero__tag">Selected Work</div>
+      <h1 class="work-hero__title">Boards we shipped.<br>Code that runs in production.</h1>
+      <p class="work-hero__sub">
+        From RF and radar to firmware, IoT, and edge AI. Every project below comes with its source and a quick case study walking through the problem, the approach, and the result.
+      </p>
+    </div>
+  </header>
+
+  <section class="work-section" id="work">
+    <div class="container">
+      <div class="work__filter" id="workFilter">
+        <button data-filter="all" class="work__filter-btn is-active">All</button>
+        <button data-filter="rf" class="work__filter-btn">RF / Radar / Microwave</button>
+        <button data-filter="embedded" class="work__filter-btn">Embedded Firmware</button>
+        <button data-filter="iot" class="work__filter-btn">IoT &amp; Cloud</button>
+        <button data-filter="edge" class="work__filter-btn">Edge AI &amp; Vision</button>
+      </div>
+      <div class="work__grid" id="workGrid"></div>
+
+      <nav class="work__pager" id="workPager" aria-label="Project pages">
+        <button class="work__pager-arrow" id="workPrev" aria-label="Previous page">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="work__pager-dots" id="workDots"></div>
+        <button class="work__pager-arrow" id="workNext" aria-label="Next page">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </nav>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="container">
+      <div class="cta__inner">
+        <span class="section-tag">// let's build something</span>
+        <h2 class="cta__title">Got a project<br>that needs to ship?</h2>
+        <p class="cta__sub">Email us. We usually reply same day.</p>
+        <div class="cta__actions">
+          <a href="mailto:info@soviotech.com" class="btn btn--primary btn--lg">info@soviotech.com</a>
+        </div>
+        <div class="cta__details"><span>Based in Pakistan, Working globally</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PDF MODAL -->
+  <div class="pdf-modal" id="pdfModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+    <div class="pdf-modal__backdrop" data-close></div>
+    <div class="pdf-modal__panel">
+      <header class="pdf-modal__head">
+        <div>
+          <div class="pdf-modal__eyebrow" id="pdfModalEyebrow">Case study</div>
+          <h2 class="pdf-modal__title" id="pdfModalTitle">&nbsp;</h2>
+        </div>
+        <div class="pdf-modal__actions">
+          <a class="pdf-modal__btn" id="pdfModalRepo" href="#" target="_blank" rel="noopener noreferrer">Repo &rarr;</a>
+          <button class="pdf-modal__close" data-close aria-label="Close">&times;</button>
+        </div>
+      </header>
+      <div class="pdf-modal__body">
+        <iframe id="pdfModalFrame" title="Case study PDF" loading="lazy" sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <img src="logo.png" alt="SovIoTech" class="footer__logo-img" width="203" height="68">
+        </div>
+        <div class="footer__status"><span class="footer__status-dot"></span><span>All systems operational</span></div>
+        <div class="footer__copy">&copy; 2026 Soviotech. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="work-page.js" defer></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
