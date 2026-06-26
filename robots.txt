@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /archive/
+Disallow: /assets/renders/
+
+Sitemap: https://soviotech.com/sitemap.xml

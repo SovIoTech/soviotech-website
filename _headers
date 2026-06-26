@@ -2,7 +2,40 @@
   Cache-Control: public, max-age=31536000, immutable
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
-  Referrer-Policy: strict-origin-when-cross-origin
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), interest-cohort=()
+  Content-Security-Policy: default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src 'self' https://cdn.jsdelivr.net; worker-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
 
 /index.html
   Cache-Control: public, max-age=0, must-revalidate
+  Content-Security-Policy: default-src 'none'; script-src 'self' https://ajax.googleapis.com; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-src 'self' https://cdn.jsdelivr.net; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+
+/work.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/about.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# explode-viewer.html uses an importmap loading Three.js from unpkg + DRACO from gstatic.
+# Self-embedding is allowed (index.html iframes it).
+/explode-viewer.html
+  X-Frame-Options: SAMEORIGIN
+  Content-Security-Policy: default-src 'none'; script-src 'self' https://unpkg.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://unpkg.com https://www.gstatic.com; worker-src blob:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'self'
+
+# Dev-only pages — block search-engine indexing.
+# glb-test.html loads model-viewer from googleapis + HDR envs from modelviewer.dev,
+# so it needs a relaxed path-scoped CSP that overrides the global block.
+/glb-test.html
+  X-Robots-Tag: noindex, nofollow
+  Content-Security-Policy: default-src 'none'; script-src 'self' https://ajax.googleapis.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data: https://modelviewer.dev; connect-src 'self' https://modelviewer.dev https://ajax.googleapis.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'
+
+/logo-redesign.html
+  X-Robots-Tag: noindex, nofollow
+
+# CSP report-only endpoint placeholder.
+# To wire ongoing violation monitoring, replace `csp-report-endpoint` with a
+# real URL (e.g. a Cloudflare Worker route, report-uri.com, or Sentry CSP
+# ingest), then append:
+#   report-uri /csp-report-endpoint
+#   report-to csp-endpoint
+# to the Content-Security-Policy directive in the /* block above.

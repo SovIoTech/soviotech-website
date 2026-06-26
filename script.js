@@ -1,3 +1,28 @@
+// -- Theme toggle (persists in localStorage, respects OS preference on first visit) --
+(() => {
+  const root = document.documentElement;
+  const stored = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const allowed = ['dark', 'light'];
+  const initial = allowed.includes(stored) ? stored : (prefersDark ? 'dark' : 'light');
+  root.setAttribute('data-theme', initial);
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    // Auto-close mobile menu if it's open
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (navLinks && navLinks.classList.contains('open')) {
+      navToggle.classList.remove('open');
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+})();
+
 // -- Nav scroll effect --
 const nav = document.getElementById('nav');
 let lastScroll = 0;
@@ -27,6 +52,23 @@ links.querySelectorAll('a').forEach(a => {
   });
 });
 
+// Tap on the overlay background (not on a link or button) closes the menu
+links.addEventListener('click', (e) => {
+  if (e.target === links) {
+    toggle.classList.remove('open');
+    links.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+// Esc also closes
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && links.classList.contains('open')) {
+    toggle.classList.remove('open');
+    links.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
 // -- Stat counter animation --
 function animateCounters() {
   document.querySelectorAll('[data-count]').forEach(el => {
@@ -48,7 +90,7 @@ function animateCounters() {
 
 // -- Scroll reveal --
 const reveals = document.querySelectorAll(
-  '.solution-card, .project, .process__step, .process__connector, .team__member, .stack__col, .hero__stat, .oss__card'
+  '.solution-card, .process__step, .team__member, .stack__col, .hero__stat, .oss__card'
 );
 
 const observer = new IntersectionObserver((entries) => {
@@ -90,14 +132,18 @@ function tokenizeHTML(html) {
   return tokens;
 }
 
+const isMobile = window.matchMedia('(max-width: 820px)').matches;
 const terminals = document.querySelectorAll('.project__terminal code');
 const terminalState = new WeakMap();
 
 terminals.forEach(code => {
   const original = code.innerHTML;
   terminalState.set(code, { original, tokens: tokenizeHTML(original), typed: false });
-  if (!reduceMotion) {
+  // Mobile / reduced-motion: skip the typewriter entirely (it pegs CPU during scroll)
+  if (!reduceMotion && !isMobile) {
     code.innerHTML = '<span class="t-caret">&nbsp;</span>';
+  } else {
+    terminalState.get(code).typed = true;
   }
 });
 
@@ -192,13 +238,86 @@ if (!reduceMotion) {
   });
 }
 
-// -- Smooth scroll --
+// -- Rolodex carousel — scroll-driven 3D stack --
+(() => {
+  const rail = document.querySelector('.stack-rail__cards');
+  const stage = document.querySelector('.stack-stage');
+  const cards = [...document.querySelectorAll('.stack-card')];
+  const title = document.getElementById('stackTitle');
+  if (!rail || !stage || !cards.length) return;
+
+  const dateEl = title && title.querySelector('.stack-rail__date');
+  const nameEl = title && title.querySelector('.stack-rail__name');
+
+  const N = cards.length;
+  let lastActive = -1;
+  let raf = 0;
+
+  function update() {
+    const railRect = rail.getBoundingClientRect();
+    const vh = window.innerHeight;
+    // total scrollable distance inside the rail (rail height minus 1 sticky viewport)
+    const driven = Math.max(1, rail.offsetHeight - vh);
+    // how far we've scrolled past the rail top
+    const scrolled = Math.min(Math.max(-railRect.top, 0), driven);
+    const progress = scrolled / driven;            // 0..1 across whole carousel
+    const activeFloat = progress * (N - 1);        // 0..N-1
+    const active = Math.round(activeFloat);
+
+    const mobile = window.innerWidth <= 820;
+    cards.forEach((card, i) => {
+      const d = i - activeFloat;
+      const ad = Math.abs(d);
+      if (mobile) {
+        // Cheap 2D transform only — no perspective, no rotateX, no translateZ
+        const ty = d * 70;
+        const sc = Math.max(0.78, 1 - ad * 0.08);
+        const op = ad > 2 ? 0 : Math.max(0, 1 - Math.pow(ad / 2.2, 1.6));
+        card.style.transform = `translate(-50%, calc(-50% + ${ty}px)) scale(${sc})`;
+        card.style.opacity = op.toFixed(3);
+      } else {
+        const ty = d * 60;
+        const tz = -ad * 140;
+        const rx = d * 10;
+        const sc = Math.max(0.62, 1 - ad * 0.11);
+        const op = ad > 2.6 ? 0 : Math.max(0, 1 - Math.pow(ad / 2.8, 1.6));
+        card.style.transform =
+          `translate(-50%, calc(-50% + ${ty}px)) translateZ(${tz}px) rotateX(${rx}deg) scale(${sc})`;
+        card.style.opacity = op.toFixed(3);
+      }
+      card.style.zIndex = String(100 - Math.round(ad * 10));
+      card.style.pointerEvents = ad < 0.5 ? 'auto' : 'none';
+      card.classList.toggle('is-active', i === active);
+    });
+
+    if (active !== lastActive && title && dateEl && nameEl) {
+      const c = cards[active];
+      title.classList.add('swapping');
+      setTimeout(() => {
+        dateEl.textContent = c.dataset.date || '';
+        nameEl.textContent = c.dataset.name || '';
+        title.classList.remove('swapping');
+      }, 180);
+      lastActive = active;
+    }
+  }
+
+  function onScroll() {
+    if (raf) return;
+    raf = requestAnimationFrame(() => { raf = 0; update(); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+})();
+
+// -- Anchor scroll — instant jump (skip the long carousel scroll) --
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
     if (target) {
       e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      target.scrollIntoView({ behavior: 'instant', block: 'start' });
     }
   });
 });

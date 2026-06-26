@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VIO Unit · 3D · Soviotech</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+<style>
+  :root{
+    --bg:#0a0a0b; --bg-2:#111113; --surface:#16161a;
+    --border:#2a2a32; --text:#e8e6e3; --text-2:#9d9b97; --text-3:#6b6966;
+    --accent:#c8ff00; --accent-dim:rgba(200,255,0,.08); --accent-glow:rgba(200,255,0,.18);
+    --font:'Space Grotesk',-apple-system,sans-serif;
+    --mono:'JetBrains Mono',monospace;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased}
+  body{
+    min-height:100vh;
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(200,255,0,.06), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(74,158,255,.05), transparent 60%),
+      var(--bg);
+  }
+
+  /* top bar */
+  .bar{
+    position:sticky;top:0;z-index:10;
+    backdrop-filter:blur(12px);
+    background:rgba(10,10,11,.7);
+    border-bottom:1px solid var(--border);
+  }
+  .bar__inner{
+    max-width:1400px;margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  .logo{font-family:var(--mono);font-size:.85rem;color:var(--text-2);letter-spacing:.05em}
+  .logo b{color:var(--accent)}
+  .crumb{font-family:var(--mono);font-size:.75rem;color:var(--text-3);letter-spacing:.1em;text-transform:uppercase}
+  .crumb span{color:var(--text-2)}
+
+  /* layout */
+  main{
+    max-width:1400px;margin:0 auto;padding:48px 28px 80px;
+    display:grid;grid-template-columns:1fr 320px;gap:32px;
+  }
+  .stages{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media (max-width:900px){
+    main{grid-template-columns:1fr;padding:28px 18px 60px}
+    .stages{grid-template-columns:1fr}
+  }
+
+  /* header */
+  .hd{grid-column:1/-1;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:8px}
+  .tag{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--accent);background:var(--accent-dim);
+    padding:6px 12px;border:1px solid rgba(200,255,0,.2);border-radius:4px;
+  }
+  .tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent-glow)}
+  h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:600;letter-spacing:-.02em;margin-top:14px}
+  h1 em{font-style:normal;color:var(--text-3);font-weight:400}
+  .sub{color:var(--text-2);font-size:.95rem;margin-top:6px;max-width:520px;line-height:1.5}
+  .meta{display:flex;gap:24px;font-family:var(--mono);font-size:.75rem;color:var(--text-3)}
+  .meta b{display:block;color:var(--text);font-weight:500;font-size:.85rem;margin-top:2px}
+
+  /* viewer */
+  .stage{
+    position:relative;
+    border:1px solid var(--border);border-radius:12px;overflow:hidden;
+    background:
+      radial-gradient(ellipse at 50% 0%, #1a1a1f 0%, #0e0e10 70%);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,.03) inset,
+      0 30px 60px -20px rgba(0,0,0,.6),
+      0 0 0 1px rgba(200,255,0,.04);
+  }
+  model-viewer{
+    width:100%;height:min(72vh,720px);
+    background:transparent;
+    --poster-color:transparent;
+  }
+  .stages model-viewer{height:min(60vh,560px)}
+  .stage__label{
+    position:absolute;top:14px;left:50%;transform:translateX(-50%);
+    font-family:var(--mono);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--text-2);pointer-events:none;
+  }
+  /* corner tick marks */
+  .tick{position:absolute;width:14px;height:14px;border:1px solid var(--accent);opacity:.5;pointer-events:none}
+  .tick.tl{top:14px;left:14px;border-right:0;border-bottom:0}
+  .tick.tr{top:14px;right:14px;border-left:0;border-bottom:0}
+  .tick.bl{bottom:14px;left:14px;border-right:0;border-top:0}
+  .tick.br{bottom:14px;right:14px;border-left:0;border-top:0}
+  .stamp{
+    position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+    font-family:var(--mono);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--text-3);pointer-events:none;
+  }
+
+  /* side panel */
+  aside{display:flex;flex-direction:column;gap:16px}
+  .card{
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;
+  }
+  .card h3{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-3);margin-bottom:14px}
+  .spec{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:.88rem}
+  .spec:last-child{border-bottom:0}
+  .spec span{color:var(--text-2)}
+  .spec b{color:var(--text);font-weight:500;font-family:var(--mono);font-size:.82rem}
+
+  .btns{display:flex;gap:8px;flex-wrap:wrap}
+  .pill{
+    flex:1;min-width:0;
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+    background:transparent;color:var(--text-2);
+    border:1px solid var(--border);border-radius:6px;padding:10px 12px;cursor:pointer;
+    transition:all .2s var(--ease);
+  }
+  .pill:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+  .pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+
+  .hint{font-family:var(--mono);font-size:.7rem;color:var(--text-3);line-height:1.7}
+  .hint kbd{
+    display:inline-block;padding:1px 6px;border:1px solid var(--border);border-radius:3px;
+    background:var(--bg-2);color:var(--text-2);font-size:.68rem;
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bar__inner">
+    <a class="logo" href="/"><b>&gt;_</b> soviotech</a>
+    <div class="crumb">portfolio &middot; <span>vio unit / 3d viewer</span></div>
+  </div>
+</div>
+
+<main>
+  <div class="hd">
+    <div>
+      <span class="tag">Wearable · Edge AI · In Development</span>
+      <h1>VIO Unit <em>// assemblies</em></h1>
+      <p class="sub">Wrist-mounted visual-inertial odometry module. Main enclosure alongside the vape sub-assembly variant. Rotate to inspect either.</p>
+    </div>
+    <div class="meta">
+      <div>FORMAT<b>glTF 2.0</b></div>
+      <div>REV<b>0.1.0</b></div>
+      <div>STATUS<b style="color:var(--accent)">● LIVE</b></div>
+    </div>
+  </div>
+
+  <div class="stages">
+    <section class="stage">
+      <span class="tick tl"></span><span class="tick tr"></span>
+      <span class="tick bl"></span><span class="tick br"></span>
+      <span class="stage__label">main assembly</span>
+      <model-viewer
+        class="mv"
+        src="main-assembly.glb"
+        alt="VIO unit main assembly"
+        camera-controls
+        auto-rotate
+        rotation-per-second="18deg"
+        interaction-prompt="none"
+        environment-image="https://modelviewer.dev/shared-assets/environments/aircraft_workshop_01_1k.hdr"
+        shadow-intensity="1.8"
+        shadow-softness="0.75"
+        exposure="1.15"
+        tone-mapping="aces"
+        min-camera-orbit="auto auto 5%"
+        max-camera-orbit="auto auto 300%"
+        camera-orbit="-25deg 75deg 110%"
+        field-of-view="28deg">
+      </model-viewer>
+      <span class="stamp">soviotech · vio-001 · 2026</span>
+    </section>
+
+    <section class="stage">
+      <span class="tick tl"></span><span class="tick tr"></span>
+      <span class="tick bl"></span><span class="tick br"></span>
+      <span class="stage__label">vape assembly</span>
+      <model-viewer
+        class="mv"
+        src="vape_assy.glb"
+        alt="VIO vape sub-assembly"
+        camera-controls
+        auto-rotate
+        rotation-per-second="18deg"
+        interaction-prompt="none"
+        environment-image="https://modelviewer.dev/shared-assets/environments/aircraft_workshop_01_1k.hdr"
+        shadow-intensity="1.8"
+        shadow-softness="0.75"
+        exposure="1.15"
+        tone-mapping="aces"
+        min-camera-orbit="auto auto 5%"
+        max-camera-orbit="auto auto 300%"
+        camera-orbit="-25deg 75deg 110%"
+        field-of-view="28deg">
+      </model-viewer>
+      <span class="stamp">soviotech · vape-001 · 2026</span>
+    </section>
+  </div>
+
+  <aside>
+    <div class="card">
+      <h3>Display</h3>
+      <div class="btns" id="envBtns">
+        <button class="pill active" data-env="https://modelviewer.dev/shared-assets/environments/aircraft_workshop_01_1k.hdr" data-label="Workshop HDR">Workshop</button>
+        <button class="pill" data-env="https://modelviewer.dev/shared-assets/environments/whipple_creek_regional_park_04_1k.hdr" data-label="Outdoor HDR">Outdoor</button>
+        <button class="pill" data-env="neutral" data-label="Neutral">Neutral</button>
+      </div>
+      <div class="btns" style="margin-top:10px">
+        <button class="pill active" data-rot="on">Auto-rotate</button>
+        <button class="pill" data-rot="off">Hold</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Specs</h3>
+      <div class="spec"><span>Format</span><b>glTF 2.0 binary</b></div>
+      <div class="spec"><span>Shading</span><b>PBR · ACES</b></div>
+      <div class="spec"><span>Shadows</span><b>Soft contact</b></div>
+      <div class="spec"><span>Environment</span><b id="envLabel">Workshop HDR</b></div>
+    </div>
+
+    <div class="card">
+      <h3>Controls</h3>
+      <p class="hint">
+        <kbd>drag</kbd> orbit &middot; <kbd>scroll</kbd> zoom<br>
+        <kbd>right-drag</kbd> pan &middot; <kbd>dbl-click</kbd> recenter
+      </p>
+    </div>
+  </aside>
+</main>
+
+<script>
+  const mvs = document.querySelectorAll('.mv');
+  const envLabel = document.getElementById('envLabel');
+  document.querySelectorAll('#envBtns .pill').forEach(b=>{
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('#envBtns .pill').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      mvs.forEach(m=>m.setAttribute('environment-image', b.dataset.env));
+      envLabel.textContent = b.dataset.label;
+    });
+  });
+
+  document.querySelectorAll('[data-rot]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('[data-rot]').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      mvs.forEach(m=>{
+        if(b.dataset.rot==='on') m.setAttribute('auto-rotate',''); else m.removeAttribute('auto-rotate');
+      });
+    });
+  });
+</script>
+</body>
+</html>
