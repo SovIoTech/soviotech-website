@@ -16,7 +16,7 @@
     --mono:'JetBrains Mono',monospace;
   }
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-  html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow:hidden}
+  html,body{height:100%;background:#f7f7f8;color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow:hidden}
 
   #canvas{position:fixed;inset:0;display:block;cursor:grab;touch-action:none}
   #canvas:active{cursor:grabbing}
@@ -157,7 +157,7 @@ renderer.toneMappingExposure = 1.05;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x0e0e10);
+scene.background = new THREE.Color(0xf7f7f8);
 
 const pmrem = new THREE.PMREMGenerator(renderer);
 
@@ -213,7 +213,7 @@ function applyLighting(name) {
   LIGHT_PRESETS[name]().forEach(l => lightRig.add(l));
   const useEnv = name === 'studio' || name === 'soft';
   scene.environment = useEnv ? currentEnv : null;
-  scene.background = new THREE.Color(name === 'night' ? 0x05060a : name === 'neon' ? 0x100818 : 0x0e0e10);
+  scene.background = new THREE.Color(name === 'night' ? 0x05060a : name === 'neon' ? 0x100818 : 0xf7f7f8);
 }
 
 const draco = new DRACOLoader();
@@ -260,7 +260,7 @@ async function init() {
   const modelSize = framing.getSize(new THREE.Vector3()).length();
 
   controls.target.copy(modelCenter);
-  camera.position.copy(modelCenter).add(new THREE.Vector3(modelSize * 0.7, modelSize * 0.45, modelSize * 0.7));
+  camera.position.copy(modelCenter).add(new THREE.Vector3(modelSize * 1.1, modelSize * 0.65, modelSize * 1.1));
   camera.near = modelSize / 200;
   camera.far = modelSize * 50;
   camera.updateProjectionMatrix();

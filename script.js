@@ -272,7 +272,7 @@ if (!reduceMotion) {
         // Cheap 2D transform only — no perspective, no rotateX, no translateZ
         const ty = d * 70;
         const sc = Math.max(0.78, 1 - ad * 0.08);
-        const op = ad > 2 ? 0 : Math.max(0, 1 - Math.pow(ad / 2.2, 1.6));
+        const op = ad < 0.5 ? 1 : (ad > 2 ? 0 : Math.max(0, 1 - Math.pow((ad - 0.5) / 1.7, 1.6)));
         card.style.transform = `translate(-50%, calc(-50% + ${ty}px)) scale(${sc})`;
         card.style.opacity = op.toFixed(3);
       } else {
@@ -280,7 +280,7 @@ if (!reduceMotion) {
         const tz = -ad * 140;
         const rx = d * 10;
         const sc = Math.max(0.62, 1 - ad * 0.11);
-        const op = ad > 2.6 ? 0 : Math.max(0, 1 - Math.pow(ad / 2.8, 1.6));
+        const op = ad < 0.5 ? 1 : (ad > 2.6 ? 0 : Math.max(0, 1 - Math.pow((ad - 0.5) / 2.3, 1.6)));
         card.style.transform =
           `translate(-50%, calc(-50% + ${ty}px)) translateZ(${tz}px) rotateX(${rx}deg) scale(${sc})`;
         card.style.opacity = op.toFixed(3);
@@ -320,4 +320,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       target.scrollIntoView({ behavior: 'instant', block: 'start' });
     }
   });
+});
+
+document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+  a.addEventListener('click', e => { e.stopPropagation(); });
 });

@@ -16,6 +16,7 @@
   --accent-2:  #303033;
   --accent-dim:rgba(10,10,11,0.04);
   --accent-glow:rgba(10,10,11,0.08);
+  --accent-cta: #c8ff00;
   --blue:      #2563eb;
   --term-bg:   #0c0c0e;
   --term-bg-2: #161618;
@@ -53,21 +54,35 @@
 
 /* DARK THEME OVERRIDE */
 :root[data-theme="dark"] {
-  --bg:        #0a0a0b;
-  --bg-2:      #111113;
-  --bg-3:      #19191d;
+  --bg:        #0e0e10;
+  --bg-2:      #16161a;
+  --bg-3:      #1c1c21;
   --surface:   #111113;
   --border:    #232328;
   --border-2:  #3a3a45;
-  --text:      #f4f4f5;
+  --text:      #e8e6e3;
   --text-2:    #a1a1aa;
   --text-3:    #71717a;
   --accent:    #f4f4f5;
   --accent-2:  #d4d4d8;
   --accent-dim:rgba(244,244,245,0.06);
   --accent-glow:rgba(244,244,245,0.12);
+  --accent-cta: #c8ff00;
   --chrome-bg: #19191d;
   --logo-invert: 1;
+}
+
+:root[data-theme="dark"] .work-card:hover,
+:root[data-theme="dark"] .oss__card:hover,
+:root[data-theme="dark"] .about-member:hover,
+:root[data-theme="dark"] .solution-card:hover {
+  box-shadow: 0 18px 40px -22px rgba(0,0,0,0.6);
+}
+:root[data-theme="dark"] .stack-card {
+  border: 1px solid var(--border);
+  box-shadow:
+    0 40px 100px -28px rgba(0,0,0,0.55),
+    0 12px 32px -12px rgba(0,0,0,0.35);
 }
 
 *, *::before, *::after {
@@ -121,6 +136,7 @@ body {
   border-radius: 4px;
 }
 .btn--magnetic:focus-visible { transform: none !important; }
+.btn--magnetic:hover { transform: none !important; }
 
 /* NAV */
 .nav {
@@ -299,6 +315,16 @@ body {
 .btn--primary:hover { background: var(--bg); color: var(--text); border-color: var(--text); }
 .btn--ghost { background: transparent; color: var(--text); border-color: var(--border-2); }
 .btn--ghost:hover { border-color: var(--text); }
+.btn--accent {
+  background: var(--accent-cta);
+  color: #0a0a0b;
+  border-color: var(--accent-cta);
+}
+.btn--accent:hover {
+  background: transparent;
+  color: var(--accent-cta);
+  border-color: var(--accent-cta);
+}
 .btn--lg { padding: 18px 36px; font-size: 1rem; }
 
 /* HERO */
@@ -316,6 +342,7 @@ body {
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 0 24px;
+  text-align: center;
 }
 .hero__tag {
   display: inline-block;
@@ -346,7 +373,9 @@ body {
 .hero__sub {
   font-size: clamp(1rem, 1.4vw, 1.15rem);
   color: var(--text-2);
-  max-width: 640px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 40px;
   line-height: 1.6;
 }
@@ -354,20 +383,23 @@ body {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 72px;
+  justify-content: center;
+  margin-bottom: 44px;
 }
 .hero__stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  padding-top: 40px;
+  gap: 20px;
+  padding-top: 28px;
   border-top: 1px solid var(--border);
   max-width: 880px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .hero__stat { display: flex; flex-direction: column; gap: 4px; }
 .hero__stat-num, .hero__stat-artifact {
   font-family: var(--mono);
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.03em;
@@ -433,7 +465,7 @@ body {
 
 /* SECTION HEADER */
 section { padding: 110px 0; }
-.section-header { max-width: 760px; margin: 0 auto 64px; text-align: center; }
+.section-header { max-width: 760px; margin: 0 auto 40px; text-align: center; }
 .section-tag {
   display: inline-block;
   font-family: var(--mono);
@@ -444,7 +476,7 @@ section { padding: 110px 0; }
   margin-bottom: 18px;
 }
 .section-title {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.4rem, 4.8vw, 3.6rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.08;
@@ -625,8 +657,8 @@ section { padding: 110px 0; }
   transition: opacity 0.35s var(--ease);
 }
 .stack-rail__name {
-  font-size: 1.6rem;
-  font-weight: 700;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text);
   transition: opacity 0.35s var(--ease);
@@ -823,6 +855,15 @@ section { padding: 110px 0; }
   transition: all 0.2s var(--ease);
 }
 .project__repo-link:hover { border-color: var(--text); background: var(--text); color: var(--bg); }
+.project__repo-link--primary {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+.project__repo-link--primary:hover {
+  background: transparent;
+  color: var(--text);
+}
 .project__repo-arrow { display: inline-block; transition: transform 0.2s var(--ease); }
 .project__repo-link:hover .project__repo-arrow { transform: translateX(3px); }
 .project__repo-badge {
@@ -1186,9 +1227,9 @@ section { padding: 110px 0; }
 }
 .work__filter-btn {
   font-family: var(--font);
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 500;
-  padding: 8px 16px;
+  padding: 6px 13px;
   border-radius: 999px;
   border: 1px solid var(--border-2);
   background: transparent;
@@ -1198,9 +1239,9 @@ section { padding: 110px 0; }
 }
 .work__filter-btn:hover { border-color: var(--text); color: var(--text); }
 .work__filter-btn.is-active {
-  background: var(--text);
+  background: var(--text-2);
   color: var(--bg);
-  border-color: var(--text);
+  border-color: var(--text-2);
 }
 
 .work__grid {
@@ -1267,8 +1308,8 @@ section { padding: 110px 0; }
 .work-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 24px;
+  gap: 14px;
+  padding: 26px 24px 22px;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -1291,6 +1332,7 @@ section { padding: 110px 0; }
   letter-spacing: 0.12em;
   color: var(--text-3);
 }
+body:not([data-filter="all"]) .work-card__cat { display: none; }
 .work-card__github {
   color: var(--text-3);
   transition: color 0.2s var(--ease);
@@ -1323,8 +1365,8 @@ section { padding: 110px 0; }
 .work-card__actions {
   display: flex;
   gap: 8px;
-  margin-top: 12px;
-  padding-top: 14px;
+  margin-top: 16px;
+  padding-top: 18px;
   border-top: 1px solid var(--border);
 }
 .work-card__btn {
@@ -1351,7 +1393,7 @@ section { padding: 110px 0; }
 /* =============================================
    ABOUT PAGE
    ============================================= */
-.about-team { padding: 80px 0 110px; background: var(--bg); }
+.about-team { padding: 80px 0 110px; background: var(--bg-2); border-top: 1px solid var(--border); }
 .about-team__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
