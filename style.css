@@ -330,7 +330,7 @@ body {
 /* HERO */
 .hero {
   position: relative;
-  padding: 110px 0 32px;
+  padding: 68px 0 28px;
   overflow: hidden;
   background: var(--bg);
 }
