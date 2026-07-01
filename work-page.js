@@ -138,12 +138,14 @@
         document.querySelectorAll('.work__filter-btn').forEach(b => b.classList.remove('is-active'));
         btn.classList.add('is-active');
         currentFilter = btn.dataset.filter;
+        document.body.dataset.filter = currentFilter;
         currentPage = 0;
         gridEl.style.minHeight = '';   // reset lock so new category retunes
         smoothRender();
       });
     });
 
+    document.body.dataset.filter = currentFilter;
     render();
 
     let resizeT;
