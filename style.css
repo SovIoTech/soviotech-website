@@ -1479,29 +1479,10 @@ section { padding: 110px 0; }
 /* =============================================
    ABOUT PAGE
    ============================================= */
-/* Visually isolate the section without a hard hairline seam.
-   The transition into --bg-2 happens over 40px via a top gradient, so the change
-   reads as a mood shift rather than a stapled edge. Same treatment on the bottom. */
+/* No background swap — sections stay on the same surface. Separation comes
+   from vertical rhythm + the "// the team" eyebrow. Zero seam possible. */
 .about-team {
-  position: relative;
-  padding: 96px 0 120px;
-  background: var(--bg-2);
-}
-.about-team::before,
-.about-team::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0;
-  height: 48px;
-  pointer-events: none;
-}
-.about-team::before {
-  top: -48px;
-  background: linear-gradient(to bottom, transparent, var(--bg-2));
-}
-.about-team::after {
-  bottom: -48px;
-  background: linear-gradient(to top, transparent, var(--bg-2));
+  padding: 112px 0 128px;
 }
 .about-team__grid {
   display: grid;
