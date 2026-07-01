@@ -73,26 +73,53 @@
       </button>
       <div class="nav__links" id="navLinks">
         <a href="/">Home</a>
-        <a href="/work">Work</a>
-        <a href="/about" class="nav__link--active">About</a>
+        <a href="work.html">Work</a>
+        <a href="about.html" class="nav__link--active">About</a>
         <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         </button>
-        <a href="/#contact" class="nav__cta">Get in touch</a>
+        <a href="mailto:info@soviotech.com" class="nav__cta">Get in touch</a>
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
-  <header class="work-hero" id="main">
+  <header class="work-hero work-hero--center" id="main">
     <div class="container">
-      <div class="hero__tag">About</div>
       <h1 class="work-hero__title">One small team.<br>All three layers.</h1>
       <p class="work-hero__sub">
         Hardware, cloud, and interface owned by the same people. No layers between you and the build. After delivery, the system stays ours to support.
       </p>
     </div>
   </header>
+
+  <!-- TEAM -->
+  <section class="about-team about-team--people" id="team">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// the team</span>
+        <h2 class="section-title">Three engineers.<br>One accountable team.</h2>
+      </div>
+
+      <div class="team-grid">
+        <article class="team-card">
+          <div class="team-card__initials">AM</div>
+          <h3 class="team-card__name">Ahmed Mohi U Din</h3>
+          <p class="team-card__role">Co-founder, Engineering</p>
+        </article>
+        <article class="team-card">
+          <div class="team-card__initials">MS</div>
+          <h3 class="team-card__name">Muhammad Sufian</h3>
+          <p class="team-card__role">Co-founder, Engineering</p>
+        </article>
+        <article class="team-card">
+          <div class="team-card__initials">MA</div>
+          <h3 class="team-card__name">Muhammad Bin Asif</h3>
+          <p class="team-card__role">Co-founder, Engineering</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <!-- HOW WE OPERATE -->
   <section class="about-team" id="model">
@@ -148,7 +175,7 @@
       <div class="cta__inner">
         <span class="section-tag">// let's talk</span>
         <h2 class="cta__title">Working on something<br>that needs all three layers?</h2>
-        <p class="cta__sub">Email us. We usually reply same day.</p>
+        <p class="cta__sub">Send us a note. We respond within one business day.</p>
         <div class="cta__actions">
           <a href="mailto:info@soviotech.com" class="btn btn--primary btn--lg">info@soviotech.com</a>
         </div>

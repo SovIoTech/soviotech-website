@@ -23,16 +23,49 @@
   });
 })();
 
-// -- Nav scroll effect --
+// -- Nav auto-hide (cursor-friendly): after nav becomes visible, hide 2s later.
+//    Cursor over the bar cancels the timer; cursor leaving restarts it. Any scroll
+//    up or scroll to the top region resets it to visible.
 const nav = document.getElementById('nav');
 let lastScroll = 0;
+let hideTimer = null;
+const HIDE_DELAY = 1500; // ms — cursor-off delay before nav starts dimming
+
+function scheduleHide() {
+  clearTimeout(hideTimer);
+  hideTimer = setTimeout(() => {
+    // Only hide if we're not near the top and cursor isn't over the nav
+    if (window.scrollY > 400 && !nav.matches(':hover')) {
+      nav.classList.add('nav--hidden');
+    }
+  }, HIDE_DELAY);
+}
+
+function showNav() {
+  nav.classList.remove('nav--hidden');
+  scheduleHide();
+}
 
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
   nav.classList.toggle('nav--scrolled', y > 60);
-  nav.classList.toggle('nav--hidden', y > lastScroll && y > 400);
+  if (y <= 400) {
+    // Near top: always visible, cancel any pending hide
+    clearTimeout(hideTimer);
+    nav.classList.remove('nav--hidden');
+  } else if (y < lastScroll) {
+    // Scrolling up: reveal + start 2s countdown
+    showNav();
+  } else if (y > lastScroll && !nav.matches(':hover')) {
+    // Scrolling down: same 1.5s countdown, so the nav fades gracefully instead of snapping away
+    scheduleHide();
+  }
   lastScroll = y;
 }, { passive: true });
+
+// Cursor over nav → keep visible; cursor leaves → restart 2s countdown
+nav.addEventListener('mouseenter', () => { clearTimeout(hideTimer); nav.classList.remove('nav--hidden'); });
+nav.addEventListener('mouseleave', scheduleHide);
 
 // -- Mobile nav toggle --
 const toggle = document.getElementById('navToggle');
@@ -268,11 +301,19 @@ if (!reduceMotion) {
     cards.forEach((card, i) => {
       const d = i - activeFloat;
       const ad = Math.abs(d);
+      // Plateau: |d| below this stays fully opaque, so the active card doesn't visibly
+      // fade the second you scroll past the snap point. Wider = more forgiving.
+      const PLATEAU = 0.55;
+      const opAt = (falloff) => {
+        if (ad <= PLATEAU) return 1;
+        const x = (ad - PLATEAU) / falloff;
+        return x >= 1 ? 0 : Math.max(0, 1 - Math.pow(x, 1.6));
+      };
       if (mobile) {
         // Cheap 2D transform only — no perspective, no rotateX, no translateZ
         const ty = d * 70;
         const sc = Math.max(0.78, 1 - ad * 0.08);
-        const op = ad > 2 ? 0 : Math.max(0, 1 - Math.pow(ad / 2.2, 1.6));
+        const op = opAt(1.8);
         card.style.transform = `translate(-50%, calc(-50% + ${ty}px)) scale(${sc})`;
         card.style.opacity = op.toFixed(3);
       } else {
@@ -280,7 +321,7 @@ if (!reduceMotion) {
         const tz = -ad * 140;
         const rx = d * 10;
         const sc = Math.max(0.62, 1 - ad * 0.11);
-        const op = ad > 2.6 ? 0 : Math.max(0, 1 - Math.pow(ad / 2.8, 1.6));
+        const op = opAt(2.4);
         card.style.transform =
           `translate(-50%, calc(-50% + ${ty}px)) translateZ(${tz}px) rotateX(${rx}deg) scale(${sc})`;
         card.style.opacity = op.toFixed(3);

@@ -3,13 +3,15 @@
    ============================================= */
 
 :root {
-  --bg:        #ffffff;
-  --bg-2:      #f7f7f8;
-  --bg-3:      #f0f0f1;
-  --surface:   #ffffff;
-  --border:    #e6e6ea;
-  --border-2:  #d4d4d8;
-  --text:      #0a0a0b;
+  /* ponytail: swapped pure #fff / #000 for softened shades — reviewer flagged pure
+     polar contrast as eye strain. Same brand feel, less harshness at scale. */
+  --bg:        #fafafa;
+  --bg-2:      #f4f4f5;
+  --bg-3:      #ececee;
+  --surface:   #fafafa;
+  --border:    #e4e4e7;
+  --border-2:  #d0d0d5;
+  --text:      #18181b;
   --text-2:    #52525b;
   --text-3:    #8a8a93;
   --accent:    #0a0a0b;
@@ -17,6 +19,8 @@
   --accent-dim:rgba(10,10,11,0.04);
   --accent-glow:rgba(10,10,11,0.08);
   --blue:      #2563eb;
+  --cta:       #2563eb;
+  --cta-hover: #1d4ed8;
   --term-bg:   #0c0c0e;
   --term-bg-2: #161618;
   --term-border: #232328;
@@ -53,13 +57,16 @@
 
 /* DARK THEME OVERRIDE */
 :root[data-theme="dark"] {
-  --bg:        #0a0a0b;
-  --bg-2:      #111113;
-  --bg-3:      #19191d;
-  --surface:   #111113;
-  --border:    #232328;
-  --border-2:  #3a3a45;
-  --text:      #f4f4f5;
+  --cta:       #3d5fb0;
+  --cta-hover: #4d75d1;
+  /* Dark: softer surface than pure black, borders tuned to be visible against bg */
+  --bg:        #131316;
+  --bg-2:      #191921;
+  --bg-3:      #22222b;
+  --surface:   #191921;
+  --border:    #2f2f38;
+  --border-2:  #40404b;
+  --text:      #e8e8ec;
   --text-2:    #a1a1aa;
   --text-3:    #71717a;
   --accent:    #f4f4f5;
@@ -128,7 +135,8 @@ body {
   top: 0; left: 0; right: 0;
   z-index: 100;
   padding: 18px 0;
-  transition: all 0.4s var(--ease);
+  /* opacity gets a longer curve so the fade feels gradual, not snappy */
+  transition: background 0.4s var(--ease), padding 0.4s var(--ease), opacity 0.9s ease-out;
 }
 .nav--scrolled {
   background: color-mix(in srgb, var(--bg) 78%, transparent);
@@ -137,7 +145,8 @@ body {
   padding: 10px 0;
   border-bottom: 1px solid var(--border);
 }
-.nav--hidden { transform: translateY(-100%); }
+/* Dim + fade out instead of snap-slide up — reads as receding, not disappearing */
+.nav--hidden { opacity: 0; pointer-events: none; }
 
 .nav__inner {
   max-width: var(--max-w);
@@ -175,14 +184,20 @@ body {
   transition: color 0.2s var(--ease);
 }
 .nav__links a:hover { color: var(--text); }
+/* ponytail: match the bottom contact CTA — same colour, same behaviour */
 .nav__cta {
-  border: 1px solid var(--text);
+  background: var(--cta);
+  border: 1px solid var(--cta);
   padding: 9px 18px;
   border-radius: 999px;
-  color: var(--text) !important;
-  transition: all 0.25s var(--ease);
+  color: #fff !important;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.25s var(--ease);
 }
-.nav__cta:hover { background: var(--text); color: var(--bg) !important; }
+.nav__cta:hover {
+  background: var(--cta-hover);
+  border-color: var(--cta-hover);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--cta) 18%, transparent);
+}
 
 .theme-toggle {
   display: inline-flex;
@@ -295,16 +310,32 @@ body {
   transition: all 0.25s var(--ease);
   white-space: nowrap;
 }
-.btn--primary { background: var(--text); color: var(--bg); }
-.btn--primary:hover { background: var(--bg); color: var(--text); border-color: var(--text); }
+/* CTA hierarchy: primary=highlight color, secondary=solid black/white, ghost=hollow.
+   All three share the same hover behaviour: darker shade + subtle lift, no fill-inversion. */
+.btn--primary, .btn--secondary, .btn--ghost {
+  transition: background 0.2s var(--ease), color 0.2s var(--ease),
+              border-color 0.2s var(--ease), box-shadow 0.25s var(--ease);
+}
+/* ponytail: no lift on hover — reviewer flagged combined color+displacement as "chatty" */
+
+.btn--primary   { background: var(--cta); color: #fff; }
+/* Primary gets a soft glow-ring on hover — distinctive from secondary's plain darken */
+.btn--primary:hover {
+  background: var(--cta-hover);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--cta) 18%, transparent);
+}
+
+.btn--secondary { background: var(--text); color: var(--bg); }
+.btn--secondary:hover { background: var(--text-2); }
+
 .btn--ghost { background: transparent; color: var(--text); border-color: var(--border-2); }
-.btn--ghost:hover { border-color: var(--text); }
+.btn--ghost:hover { border-color: var(--text); background: var(--accent-dim); }
 .btn--lg { padding: 18px 36px; font-size: 1rem; }
 
 /* HERO */
 .hero {
   position: relative;
-  padding: 160px 0 100px;
+  padding: 130px 0 100px;      /* +25px more top → title starts lower */
   overflow: hidden;
   background: var(--bg);
 }
@@ -316,7 +347,10 @@ body {
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 0 24px;
+  text-align: center;
 }
+.hero__sub, .hero__stats { margin-left: auto; margin-right: auto; }
+.hero__actions { justify-content: center; }
 .hero__tag {
   display: inline-block;
   font-family: var(--mono);
@@ -337,9 +371,10 @@ body {
   margin-bottom: 28px;
   color: var(--text);
 }
+/* Highlight — same accent as CTAs so the rotating phrase reads as intentional in both themes */
 .hero__title-accent {
   display: inline-block;
-  color: var(--text-3);
+  color: var(--cta);
   transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
 }
 .hero__title-accent--out { opacity: 0; transform: translateY(-8px); }
@@ -354,7 +389,7 @@ body {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 72px;
+  margin-bottom: 50px;         /* keep original: gutter position depends on this */
 }
 .hero__stats {
   display: grid;
@@ -364,7 +399,7 @@ body {
   border-top: 1px solid var(--border);
   max-width: 880px;
 }
-.hero__stat { display: flex; flex-direction: column; gap: 4px; }
+.hero__stat { display: flex; flex-direction: column; gap: 4px; align-items: center; font-variant-numeric: tabular-nums; }
 .hero__stat-num, .hero__stat-artifact {
   font-family: var(--mono);
   font-size: 2.2rem;
@@ -433,7 +468,7 @@ body {
 
 /* SECTION HEADER */
 section { padding: 110px 0; }
-.section-header { max-width: 760px; margin: 0 auto 64px; text-align: center; }
+.section-header { max-width: 760px; margin: 0 auto 32px; text-align: center; }
 .section-tag {
   display: inline-block;
   font-family: var(--mono);
@@ -450,6 +485,7 @@ section { padding: 110px 0; }
   line-height: 1.08;
   color: var(--text);
   margin-bottom: 18px;
+  text-wrap: balance;
 }
 .section-sub { font-size: 1.05rem; color: var(--text-2); line-height: 1.6; }
 
@@ -598,7 +634,7 @@ section { padding: 110px 0; }
   background: var(--bg-2);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 110px 0 60px;
+  padding: 48px 0 60px;
 }
 
 .stack-rail {
@@ -607,12 +643,29 @@ section { padding: 110px 0; }
 }
 .stack-rail__title {
   position: absolute;
-  top: 50%;
+  top: 22%;
   left: 6vw;
-  transform: translateY(-50%);
   z-index: 200;
   pointer-events: none;
-  max-width: 22vw;
+  max-width: min(28vw, 380px);
+  text-align: left;
+}
+.stack-rail__title .section-tag { display: inline-block; margin-bottom: 14px; }
+.stack-rail__title .section-title {
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  line-height: 1.08;
+  margin-bottom: 12px;
+}
+.stack-rail__title .section-sub {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.5;
+  margin: 0;
+}
+.stack-rail__divider {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 48px 0 26px;
 }
 .stack-rail__name { font-size: clamp(1.4rem, 2.6vw, 2.2rem); }
 .stack-rail__date {
@@ -625,12 +678,12 @@ section { padding: 110px 0; }
   transition: opacity 0.35s var(--ease);
 }
 .stack-rail__name {
-  font-size: 1.6rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.8rem, 2.4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
   color: var(--text);
   transition: opacity 0.35s var(--ease);
-  line-height: 1.15;
+  line-height: 1.05;
 }
 .stack-rail__title.swapping .stack-rail__date,
 .stack-rail__title.swapping .stack-rail__name { opacity: 0; }
@@ -664,10 +717,10 @@ section { padding: 110px 0; }
 }
 .stack-card {
   position: absolute;
-  top: 50%;
+  top: 56%;
   left: 64%;
   width: min(62vw, 1020px);
-  height: 72vh;
+  height: 82vh;
   transform: translate(-50%, -50%);
   will-change: transform, opacity;
   background: var(--bg);
@@ -741,7 +794,10 @@ section { padding: 110px 0; }
   flex-direction: column;
   min-height: 0;
 }
-.stack-card .project__title { font-size: 1.3rem; }
+.stack-card .project__title { font-size: 1.3rem; margin-bottom: 14px; }
+.stack-card .project__info { justify-content: space-between; gap: 14px; }
+.stack-card .project__repo { margin-top: 0; padding-top: 0; }
+.stack-card .project__stack { margin-top: 4px; margin-bottom: 8px; }
 .stack-card__visual {
   display: flex;
   align-items: stretch;
@@ -825,6 +881,18 @@ section { padding: 110px 0; }
 .project__repo-link:hover { border-color: var(--text); background: var(--text); color: var(--bg); }
 .project__repo-arrow { display: inline-block; transition: transform 0.2s var(--ease); }
 .project__repo-link:hover .project__repo-arrow { transform: translateX(3px); }
+
+/* Case-study link = primary CTA. Repo link stays as the ghost/secondary. */
+.project__repo-link--primary {
+  background: var(--cta);
+  border-color: var(--cta);
+  color: #fff;
+}
+.project__repo-link--primary:hover {
+  background: var(--cta-hover);
+  border-color: var(--cta-hover);
+  color: #fff;
+}
 .project__repo-badge {
   display: inline-flex;
   align-items: center;
@@ -1174,6 +1242,61 @@ section { padding: 110px 0; }
   line-height: 1.6;
 }
 
+/* Centered variant — mirrors the home hero composition */
+.work-hero--center { text-align: center; }
+.work-hero--center .work-hero__title { text-wrap: balance; }
+.work-hero--center .work-hero__sub { margin-left: auto; margin-right: auto; }
+
+/* Team grid — clean 3-card row with initials avatars */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+.team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 28px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.25s var(--ease);
+}
+.team-card:hover {
+  border-color: var(--text);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px -22px rgba(0,0,0,0.15);
+}
+.team-card__initials {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cta);
+  color: #fff;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+.team-card__name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+.team-card__role {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
 .work-section { padding: 60px 0 110px; background: var(--bg); }
 
 .work__filter {
@@ -1197,15 +1320,19 @@ section { padding: 110px 0; }
   transition: all 0.2s var(--ease);
 }
 .work__filter-btn:hover { border-color: var(--text); color: var(--text); }
+/* Filters are navigation, not a CTA. Active state stays subdued so the Case-study
+   button remains the loudest thing on the card. */
 .work__filter-btn.is-active {
-  background: var(--text);
-  color: var(--bg);
-  border-color: var(--text);
+  background: var(--bg-3);
+  color: var(--text);
+  border-color: var(--bg-3);
+  font-weight: 600;
 }
 
 .work__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  align-items: start;               /* natural card heights, no dead space in short ones */
   gap: 18px;
   transition: opacity 0.22s var(--ease), transform 0.32s var(--ease);
 }
@@ -1267,13 +1394,16 @@ section { padding: 110px 0; }
 .work-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 24px;
+  gap: 16px;                 /* base vertical rhythm — 8-scale */
+  padding: 28px;             /* concentric radius: inner content ~14px from edge */
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 14px;
   transition: all 0.25s var(--ease);
 }
+/* Overrides for tighter/looser spots than the base gap. */
+.work-card__title  + .work-card__tagline { margin-top: -8px; }  /* title↔tagline: same block */
+.work-card__tags   { margin-top: 4px; }                          /* small break before chips */
 .work-card:hover {
   border-color: var(--text);
   transform: translateY(-3px);
@@ -1284,13 +1414,7 @@ section { padding: 110px 0; }
   align-items: center;
   justify-content: space-between;
 }
-.work-card__cat {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--text-3);
-}
+.work-card__cat { display: none; }
 .work-card__github {
   color: var(--text-3);
   transition: color 0.2s var(--ease);
@@ -1308,9 +1432,8 @@ section { padding: 110px 0; }
   font-size: 0.88rem;
   color: var(--text-2);
   line-height: 1.55;
-  flex: 1;
 }
-.work-card__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.work-card__tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .work-card__tags span {
   font-family: var(--mono);
   font-size: 0.68rem;
@@ -1323,8 +1446,8 @@ section { padding: 110px 0; }
 .work-card__actions {
   display: flex;
   gap: 8px;
-  margin-top: 12px;
-  padding-top: 14px;
+  margin-top: 8px;           /* rhythm: bigger break before actions */
+  padding-top: 20px;
   border-top: 1px solid var(--border);
 }
 .work-card__btn {
@@ -1341,17 +1464,45 @@ section { padding: 110px 0; }
 }
 .work-card__btn--ghost { color: var(--text-2); background: transparent; }
 .work-card__btn--ghost:hover { color: var(--text); border-color: var(--text); }
+/* Match the home carousel: case-study CTA uses the site --cta highlight color */
 .work-card__btn--primary {
-  background: var(--text);
-  color: var(--bg);
-  border-color: var(--text);
+  background: var(--cta);
+  color: #fff;
+  border-color: var(--cta);
 }
-.work-card__btn--primary:hover { background: var(--bg); color: var(--text); }
+.work-card__btn--primary:hover {
+  background: var(--cta-hover);
+  border-color: var(--cta-hover);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--cta) 18%, transparent);
+}
 
 /* =============================================
    ABOUT PAGE
    ============================================= */
-.about-team { padding: 80px 0 110px; background: var(--bg); }
+/* Visually isolate the section without a hard hairline seam.
+   The transition into --bg-2 happens over 40px via a top gradient, so the change
+   reads as a mood shift rather than a stapled edge. Same treatment on the bottom. */
+.about-team {
+  position: relative;
+  padding: 96px 0 120px;
+  background: var(--bg-2);
+}
+.about-team::before,
+.about-team::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 48px;
+  pointer-events: none;
+}
+.about-team::before {
+  top: -48px;
+  background: linear-gradient(to bottom, transparent, var(--bg-2));
+}
+.about-team::after {
+  bottom: -48px;
+  background: linear-gradient(to top, transparent, var(--bg-2));
+}
 .about-team__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

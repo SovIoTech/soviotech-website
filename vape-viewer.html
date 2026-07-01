@@ -16,7 +16,7 @@
     --mono:'JetBrains Mono',monospace;
   }
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-  html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow:hidden}
+  html,body{height:100%;background:transparent;color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow:hidden}
 
   #canvas{position:fixed;inset:0;display:block;cursor:grab;touch-action:none}
   #canvas:active{cursor:grabbing}
@@ -149,15 +149,17 @@ const stateLabel = document.getElementById('stateLabel');
 const autoBtn = document.getElementById('autoBtn');
 const resetBtn = document.getElementById('resetBtn');
 
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5)); // ponytail: cap DPR, big win on high-DPI displays for a heavy model
 renderer.setSize(innerWidth, innerHeight, false);
+renderer.setClearColor(0x000000, 0);   // fully transparent, card bg shows through
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1.05;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x0e0e10);
+// ponytail: scene.background left null so parent iframe/card bg (theme-aware) shows through
+scene.background = null;
 
 const pmrem = new THREE.PMREMGenerator(renderer);
 
@@ -213,7 +215,8 @@ function applyLighting(name) {
   LIGHT_PRESETS[name]().forEach(l => lightRig.add(l));
   const useEnv = name === 'studio' || name === 'soft';
   scene.environment = useEnv ? currentEnv : null;
-  scene.background = new THREE.Color(name === 'night' ? 0x05060a : name === 'neon' ? 0x100818 : 0x0e0e10);
+  // ponytail: keep scene transparent so the parent card bg (light/dark theme) shows through
+  scene.background = null;
 }
 
 const draco = new DRACOLoader();
@@ -255,12 +258,15 @@ async function init() {
     applyExplode(t);
     framing.union(new THREE.Box3().setFromObject(base));
   }
-  applyExplode(0);
-  const modelCenter = framing.getCenter(new THREE.Vector3());
+  // ponytail: freeze fully exploded — no per-frame mixer work → no jitter
+  applyExplode(1);
+  const unexplodedBox = new THREE.Box3().setFromObject(base);
+  const modelCenter = unexplodedBox.getCenter(new THREE.Vector3());
   const modelSize = framing.getSize(new THREE.Vector3()).length();
 
   controls.target.copy(modelCenter);
-  camera.position.copy(modelCenter).add(new THREE.Vector3(modelSize * 0.7, modelSize * 0.45, modelSize * 0.7));
+  camera.position.copy(modelCenter).add(new THREE.Vector3(modelSize * 1.286, modelSize * 0.857, modelSize * 1.286));
+  applyViewShift();
   camera.near = modelSize / 200;
   camera.far = modelSize * 50;
   camera.updateProjectionMatrix();
@@ -321,27 +327,31 @@ document.querySelectorAll('[data-light]').forEach(b => {
   });
 });
 
-const clock = new THREE.Clock();
+// ponytail: freeze the assembly fully exploded and skip the per-frame mixer work.
+// Others cards have no animation; matching their perf profile fixes the jitter.
+// If you want the open/close cycle back, restore the previous tick + set autoCycle=true.
 function tick() {
   requestAnimationFrame(tick);
-  const t = clock.getElapsedTime();
-  if (autoCycle) {
-    // ponytail: drive the mixer directly with the cosine — no integer rounding,
-    // no spring-lerp on top. The cosine already eases in/out at both ends.
-    current = target = 0.5 - 0.5 * Math.cos((t / 4) * Math.PI);
-  } else {
-    current += (target - current) * 0.18;
-    if (Math.abs(target - current) < 1e-4) current = target;
-  }
-  applyExplode(current);
   controls.update();
   renderer.render(scene, camera);
 }
 
+// ponytail: nudge the rendered model up-left inside the frame.
+// Tweak SHIFT_X / SHIFT_Y (fraction of viewport) if the eyeballed position drifts.
+const SHIFT_X = 0.10;   // + = model shifts LEFT in view
+const SHIFT_Y = 0.08;   // + = model shifts UP in view
+function applyViewShift() {
+  camera.setViewOffset(
+    innerWidth, innerHeight,
+    innerWidth * SHIFT_X, innerHeight * SHIFT_Y,
+    innerWidth, innerHeight
+  );
+}
+
 addEventListener('resize', () => {
   camera.aspect = innerWidth / innerHeight;
-  camera.updateProjectionMatrix();
   renderer.setSize(innerWidth, innerHeight, false);
+  applyViewShift();   // re-apply on resize (setViewOffset also calls updateProjectionMatrix)
 });
 
 init().catch(err => {

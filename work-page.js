@@ -95,6 +95,9 @@
 
       allCards.forEach(c => { c.style.display = 'none'; });
       visible.slice(start, end).forEach(c => { c.style.display = ''; });
+      // Hide per-card category chip when a specific filter is applied — the filter chip
+      // above already tells the user what they're looking at. Reduces redundancy.
+      gridEl.classList.toggle('is-filtered', currentFilter !== 'all');
 
       // Lock the grid's height to the tallest page so partial last pages
       // don't shrink the layout and shove the pager upward under the user's pointer.
